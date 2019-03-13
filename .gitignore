@@ -3,8 +3,18 @@
 # python cache
 __pycache__
 
+# jupyter
+.ipynb_checkpoints
+
+# test
+test*
+Untitled*
+
 # data
-*/data/
+data
+model
+prediction
+pickle
 *.txt
 *.csv
 *.tar.gz
