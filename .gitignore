@@ -15,10 +15,13 @@ data
 model
 prediction
 pickle
+result
+dict
 *.txt
 *.csv
 *.tar.gz
 *.zip
+*.pdf
 
 # idea
 .idea/
