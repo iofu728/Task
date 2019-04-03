@@ -3,11 +3,6 @@
 # @Date:   2019-01-24 15:41:13
 # @Last Modified by:   gunjianpan
 # @Last Modified time: 2019-03-04 19:10:32
-# -*- coding: utf-8 -*-
-# @Author: gunjianpan
-# @Date:   2018-12-20 11:27:21
-# @Last Modified by:   gunjianpan
-# @Last Modified time: 2018-12-26 21:24:36
 import lightgbm as lgb
 import numpy as np
 import pandas as pd
