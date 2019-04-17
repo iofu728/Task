@@ -7,23 +7,17 @@ __pycache__
 .ipynb_checkpoints
 
 # test
-test*
 Untitled*
 
 # data
-data
 model
 prediction
 pickle
 result
 dict
-*.txt
-*.csv
-*.tar.gz
-*.zip
-*.pdf
 
-# idea
+# ide
+.vscode
 .idea/
 
 # py compile file
