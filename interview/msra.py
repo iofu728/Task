@@ -15,7 +15,7 @@ from numba import jit
 from sklearn.model_selection import train_test_split
 warnings.filterwarnings('ignore')
 
-from utils.utils import begin_time, end_time, dump_bigger, load_bigger
+from util.util import begin_time, end_time, dump_bigger, load_bigger
 
 data_path = 'interview/data/'
 model_path = 'interview/model/'
