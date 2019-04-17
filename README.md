@@ -43,7 +43,7 @@
 
 - **Task**: _Word similarity_
 
-  - Two way to calculate word simarity. one for dictionary, one for corpus.
+  - Two way to calculate word similarity. one for dictionary, one for corpus.
   - Data: Mturk-771
   - [http://www2.mta.ac.il/~gideon/mturk771.html](http://www2.mta.ac.il/~gideon/mturk771.html)
 
