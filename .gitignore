@@ -3,14 +3,21 @@
 # python cache
 __pycache__
 
-# data
-*/data/
-*.txt
-*.csv
-*.tar.gz
-*.zip
+# jupyter
+.ipynb_checkpoints
 
-# idea
+# test
+Untitled*
+
+# data
+model
+prediction
+pickle
+result
+dict
+
+# ide
+.vscode
 .idea/
 
 # py compile file

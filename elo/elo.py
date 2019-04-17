@@ -3,11 +3,7 @@
 # @Date:   2019-01-24 15:41:13
 # @Last Modified by:   gunjianpan
 # @Last Modified time: 2019-03-04 19:10:32
-# -*- coding: utf-8 -*-
-# @Author: gunjianpan
-# @Date:   2018-12-20 11:27:21
-# @Last Modified by:   gunjianpan
-# @Last Modified time: 2018-12-26 21:24:36
+from util.util import begin_time, end_time
 import lightgbm as lgb
 import numpy as np
 import pandas as pd
@@ -32,8 +28,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import LinearRegression
 
 warnings.filterwarnings('ignore')
-
-from utils.utils import begin_time, end_time
 
 
 def drop_col_not_req(df, cols):
