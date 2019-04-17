@@ -1,0 +1,14 @@
+pickle
+tensorflow
+numpy
+pandas
+mxnet
+gluonnlp
+nltk
+scipy
+flask
+lightgbm
+numba
+sklearn
+theano
+gensim
