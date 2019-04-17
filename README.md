@@ -37,7 +37,7 @@
 ## Concrete
 
 - **Task**: [Concrete Warning](https://www.datafountain.cn/competitions/336/details)
-- **code**: [concrete](https://github.com/iofu728/Task/tree/master/cronete)
+- **code**: [concrete](https://github.com/iofu728/Task/tree/master/concrete)
 
 ## Semantic Course Task1
 
@@ -47,7 +47,7 @@
   - Data: Mturk-771
   - [http://www2.mta.ac.il/~gideon/mturk771.html](http://www2.mta.ac.il/~gideon/mturk771.html)
 
-- **Final result**: [semanticTask1](https://github.com/iofu728/STask/blob/master/semantic/task1/semanticTask1.pdf)
+- **Final result**: [semanticTask1](https://github.com/iofu728/Task/blob/master/semantic/task1/semanticTask1.pdf)
 - **code**: [semantic/Task1](https://github.com/iofu728/Task/tree/master/semantic/task1)
 
 ## Interview
@@ -64,7 +64,7 @@
   - A brief description of your model and feature engineering.
   - Your code.
 
-- **Final result**: [Code record](https://github.com/iofu728/STask/blob/master/interview/CodeTaskRecord.pdf)
+- **Final result**: [Code record](https://github.com/iofu728/Task/blob/master/interview/CodeTaskRecord.pdf)
 - **Code**: [interview](https://github.com/iofu728/Task/tree/master/interview)
 - **Result**: macro_f1: **84.707%**/Train, **82.429%**/Test
 
