@@ -1,4 +1,4 @@
-> Some Tasks by _gunjianpan_
+> 🤧Some tasks for competition by gunjianpan
 
 ## Navigation
 
