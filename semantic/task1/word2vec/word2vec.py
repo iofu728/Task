@@ -18,7 +18,7 @@ import tensorflow as tf
 from collections import Counter
 from numba import jit
 from nltk.corpus import wordnet as wn
-# from utils.utils import begin_time, end_time
+# from util.util import begin_time, end_time
 from scipy.stats import spearmanr
 
 data_path = 'word2vec/data/'

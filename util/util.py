@@ -12,7 +12,7 @@ import time
 import theano
 import theano.tensor as T
 
-from utils.constant import float32, floatX
+from util.constant import float32, floatX
 
 theano.config.floatX = 'float32'
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# @Description: utils function
+# @Description: util function
 # @Author: gunjianpan
 # @Date:   2018-11-13 16:14:18
 # @Last Modified by:   gunjianpan
@@ -13,7 +13,7 @@ import time
 import theano
 import theano.tensor as T
 
-from utils.constant import float32, floatX
+from util.constant import float32, floatX
 
 theano.config.floatX = 'float32'
 
