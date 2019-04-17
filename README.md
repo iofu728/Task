@@ -41,11 +41,11 @@
 
 ## Semantic Course Task1
 
-- **Task**: Word similarity
+- **Task**: _Word similarity_
 
-- Two way to calculate word simarity. one for dictionary, one for corpus.
-- Data: Mturk-771
-- [http://www2.mta.ac.il/~gideon/mturk771.html](http://www2.mta.ac.il/~gideon/mturk771.html)
+  - Two way to calculate word simarity. one for dictionary, one for corpus.
+  - Data: Mturk-771
+  - [http://www2.mta.ac.il/~gideon/mturk771.html](http://www2.mta.ac.il/~gideon/mturk771.html)
 
 - **Final result**: [semanticTask1](https://github.com/iofu728/STask/blob/master/semantic/task1/semanticTask1.pdf)
 - **code**: [semantic/Task1](https://github.com/iofu728/Task/tree/master/semantic/task1)
@@ -54,7 +54,7 @@
 
 - **Task**:
 
-  - Description: This is a very simple binary classification task, you can design your model in any way you want.
+  - Description: This is a very simple _binary classification task_, you can design your model in any way you want.
   - Evaluation: AUC, area under the ROC curve
   - Data: The data file are provided in your answer submission folder in SharePoint (the link shown above).
   - train.csv: used to train model.
