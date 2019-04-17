@@ -16,6 +16,7 @@ from numba import jit
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import f1_score
+from util.util import *
 warnings.filterwarnings('ignore')
 
 data_path = 'concrete/data/'
@@ -25,45 +26,6 @@ prediction_path = 'concrete/prediction/'
 v = '2'
 # t = '_total'
 t = ''
-start = []
-
-
-def begin_time():
-    """
-    multi-version time manage
-    """
-    global start
-    start.append(time.time())
-    return len(start) - 1
-
-
-def end_time(version):
-    termSpend = time.time() - start[version]
-    print(str(termSpend)[0:5])
-
-
-def dump_bigger(data, output_file):
-    """
-    pickle.dump big file which size more than 4GB
-    """
-    max_bytes = 2**31 - 1
-    bytes_out = pickle.dumps(data, protocol=4)
-    with open(output_file, 'wb') as f_out:
-        for idx in range(0, len(bytes_out), max_bytes):
-            f_out.write(bytes_out[idx:idx + max_bytes])
-
-
-def load_bigger(input_file):
-    """
-    pickle.load big file which size more than 4GB
-    """
-    max_bytes = 2**31 - 1
-    bytes_in = bytearray(0)
-    input_size = os.path.getsize(input_file)
-    with open(input_file, 'rb') as f_in:
-        for _ in range(0, input_size, max_bytes):
-            bytes_in += f_in.read(max_bytes)
-    return pickle.loads(bytes_in)
 
 
 class Concrete(object):
@@ -460,11 +422,14 @@ class Concrete(object):
             elif slices == 1:
                 wait_columns = [*columns_total[:128], *columns_total[178:198]]
             elif slices == 2:
-                wait_columns = [*columns_total[:128], *columns_total[178:198], *columns_total[218:228]]
+                wait_columns = [*columns_total[:128], *
+                                columns_total[178:198], *columns_total[218:228]]
             elif slices < 9:
-                wait_columns = [*columns_total[:128], *columns_total[178:198], *columns_total[218:228], *columns_total[88 + slices * 10:98 + slices * 10]]
+                wait_columns = [*columns_total[:128], *columns_total[178:198], *
+                                columns_total[218:228], *columns_total[88 + slices * 10:98 + slices * 10]]
             else:
-                wait_columns = [*columns_total[:128], *columns_total[178:198], *columns_total[218:228], *columns_total[108 + slices * 10:118 + slices * 10]]
+                wait_columns = [*columns_total[:128], *columns_total[178:198], *
+                                columns_total[218:228], *columns_total[108 + slices * 10:118 + slices * 10]]
             # columns = [*columns_total[:118], *columns_total[178:188], *columns_total[118 + slices * 10:128 + slices * 10]]
             # columns = columns_total[:118] + [:118 + 10 * slices]
             # wait_columns = self.good_columns
