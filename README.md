@@ -1,17 +1,17 @@
-# Some Tasks by _gunjianpan_
+> Some Tasks by _gunjianpan_
 
 ## Navigation
 
-| Name                                                                                                                       | Classify          | Type           | Method                    | Modify Data |
-| -------------------------------------------------------------------------------------------------------------------------- | ----------------- | -------------- | ------------------------- | ----------- |
-| [NLP cbb Task1: _Medicine Corpus processing_](#nlp-cbb-task1-medicine-corpus-processing)                                   | Linguistics       | Generate       | Jieba + Dict + Rules      | 2019-04-18  |
-| [Semantic Task2: _SemEval2017-Task4-SentimentAnalysis_](#semantic-course-task2-semeval2017-task4-sentimentanalysis)        | Sentiment         | Classify       | TextCNN & Bert            | 2019-04-14  |
-| [NLP senior Task1: _SemEval2018-Task7-RelationClassification_](#nlp-senior-task1-semeval2018-task7-relationclassification) | Semantic Relation | Multi Classify | TextCNN & LR & LinearSV   | 2019-04-11  |
-| [Concrete](#concrete)                                                                                                      | Feature           | Classify       | lightGBM                  | 2019-03-28  |
-| [Semantic Course Task1](#semantic-course-task1)                                                                            | Word Similarity   | Regression     | word2vec & Bert & WordNet | 2019-03-24  |
-| [Interview](#interview)                                                                                                    | Feature           | Classify       | lightGBM                  | 2019-03-18  |
-| [Elo](#elo)                                                                                                                | Feature           | Classify       | lightGBM                  | 2019-03-04  |
-| [Titanic](#titanic)                                                                                                        | Feature           | Classify       | lightGBM                  | 2018-12-20  |
+| Name                                                                                                                       | Classify          | Type           | Method                    | Modify |
+| -------------------------------------------------------------------------------------------------------------------------- | ----------------- | -------------- | ------------------------- | ------ |
+| [NLP cbb Task1: _Medicine Corpus processing_](#nlp-cbb-task1-medicine-corpus-processing)                                   | Linguistics       | Generate       | Jieba + Dict + Rules      | 190418 |
+| [Semantic Task2: _SemEval2017-Task4-SentimentAnalysis_](#semantic-course-task2-semeval2017-task4-sentimentanalysis)        | Sentiment         | Classify       | TextCNN & Bert            | 190414 |
+| [NLP senior Task1: _SemEval2018-Task7-RelationClassification_](#nlp-senior-task1-semeval2018-task7-relationclassification) | Semantic Relation | Multi Classify | TextCNN & LR & LinearSV   | 190411 |
+| [Concrete](#concrete)                                                                                                      | Feature           | Classify       | lightGBM                  | 190328 |
+| [Semantic Course Task1](#semantic-course-task1)                                                                            | Word Similarity   | Regression     | word2vec & Bert & WordNet | 190324 |
+| [Interview](#interview)                                                                                                    | Feature           | Classify       | lightGBM                  | 190318 |
+| [Elo](#elo)                                                                                                                | Feature           | Classify       | lightGBM                  | 190304 |
+| [Titanic](#titanic)                                                                                                        | Feature           | Classify       | lightGBM                  | 181220 |
 
 ## NLP cbb Task1: _Medicine Corpus processing_
 
