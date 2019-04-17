@@ -2,7 +2,7 @@
 @Author: gunjianpan
 @Date:   2019-03-30 22:01:26
 @Last Modified by:   gunjianpan
-@Last Modified time: 2019-04-03 21:29:39
+@Last Modified time: 2019-04-17 22:46:12
 '''
 
 import jieba
@@ -14,16 +14,17 @@ import pickle
 import pkuseg
 import thulac
 
+from numba import jit
 from util import *
 
 student_id = 1
 data_dir = 'data/'
-raw_dir = '%sraw_%d.txt' % (data_dir, student_id)
+raw_dir = '{}raw_{}.txt'.format(data_dir, student_id)
 pickle_dir = 'pickle/'
 result_dir = 'result/'
-ner_result_dir = '%s1st_%d.txt' % (result_dir, student_id)
-pos_result_dir = '%sresult_pos_%d.txt' % (result_dir, student_id)
-seg_result_dir = '%sresult_seg_%d.txt' % (result_dir, student_id)
+ner_result_dir = '{}2nd_{}.txt'.format(result_dir, student_id)
+pos_result_dir = '{}result_pos_{}.txt'.format(result_dir, student_id)
+seg_result_dir = '{}result_seg_{}.txt'.format(result_dir, student_id)
 
 
 class pretreat:
@@ -35,31 +36,48 @@ class pretreat:
         self.tag_first = ['e', 'm', 'u', 'z']
         self.tag_upper = ['dg', 'ng', 'tg', 'vg']
         self.other_dict = ['$$_', '$$__']
-        self.prop_dict = [('三凹征', 'n'), ('去大脑', 'n'),
-                          ('喘鸣', 'v'), ('川崎病', 'n'), ('幼年型', 'n')]
-        del_dict = ['体格检查', '应详细', '光反应', '对光',
-                    'B超', '中加', '表面活性', '小管囊性', '放射性核素', '状包块', '心室颤动']
+        self.prop_dict = [
+            ('三凹征', 'n'), ('去大脑', 'n'), ('喘鸣', 'v'), ('川崎病',
+             'n'), ('幼年型', 'n'), ('心率', 'n'), ('革兰阴性杆菌', 'n'),
+            ('醋酸甲羟孕酮', 'n'), ('囊腔', 'n'), ('囊炎', 'n'), ('智力',
+             'n'), ('量表', 'n'), ('痰栓', 'n'), ('静脉窦', 'n'),
+            ('孟鲁司特钠', 'n'), ('扎鲁司特', 'n'), ('鲁米那', 'n'), ('幽门螺杆菌',
+             'n'), ('一过性', 'b'), ('抗酸杆菌', 'n'), ('沙门菌株', 'n'),
+            ('梭形杆菌', 'n'), ('奋森螺旋体', 'n'), ('嗜血流感杆菌',
+             'n'), ('肺炎链球菌', 'n'), ('大肠埃希菌', 'n'), ('肺炎克雷伯杆菌', 'n'),
+            (' 铜绿假单胞菌', 'n'), ('无症状性', 'b')
+            ]
+        del_dict = ['体格检查', '应详细', '光反应', '对光', '触之软', '运动神经元', '性菌',
+                    'B超', '中加', '表面活性', '小管囊性', '放射性核素', '状包块', '心室颤动', '窦性心', '如唐', '为对', '和奋森']
         self.end_exec = ['一致性', '易感性', '保护性',
                          '季节性', '多形性', '遗传性', '特异性', '急性期', '耐药性', '慢性病', '男女性']
+        self.foreigners = [
+            'Judkins', 'Dotter', 'Rashkind', 'Miller', 'Porstmann', 'Gensini', 'Berman', 'Hasle',
+        'Kan', 'Lock', 'Rance', 'Willms', 'National', 'Tumor', 'NWTS', 'Study', 'Meige', 'Hyperekplexias', 'Glaevecke', 'Doehle', 'cobra']
+        self.distance = ['Minnesota', 'Olmsted']
         end_digit = ['%d.' % ii for ii in range(10)]
         self.del_dict = [*del_dict, *end_digit]
-        self.digit_exec = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
+        self.digit_exec = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧',
+            '⑨', '⑩', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
         self.name_exec = ['张力', '高达', '尼龙']
+        self.name = ['王治国', '顾学范']
         self.unit = ['kg', 'm', 'mg', 'mm', 'L', 'mol',
                      'mmHg', 'ml', 'pH', 'ppm', 'cm', 'cmH', 'g', 'km', 'sec']
         self.nt_exec = ['复合物']
-        self.difference_word = ['急性', '慢性']
+        self.difference_word = ['急性', '慢性', '阳性', '脑性', '阴性', '局性','脆性', '弹性', '隐性', '酸性', '囊性', '前性', '碱性', '毒性',  '恶性', '伴性',  '网状', '盘状', '圆状',  '冠状',  '片状', '点状','絮状']
         self.ner_error = ['症状/n 消失/n']
+        self.roman = ['Ⅰ','Ⅱ','Ⅲ','Ⅳ','Ⅴ','Ⅵ','Ⅷ','Ⅸ']
         self.punctuation = []
+        self.medicine_pattern = '.*菌$|.*酮$'
         self.load_data()
 
     def load_data(self, mode=False, repeat=True):
         '''load raw & medicine dict'''
         origin_word = self.load_file(raw_dir)
-        self.test_origin = self.load_file('%stest_origin.txt' % data_dir)
-        self.test_seg = self.load_file('%stest_pos.txt' % data_dir)
-        self.test_tag = self.load_file('%stest_tag.txt' % data_dir)
-        self.test_ner = self.load_file('%stest_ner.txt' % data_dir)
+        self.test_origin = self.load_file('{}test_origin.txt'.format(data_dir))
+        self.test_seg = self.load_file('{}test_pos.txt'.format(data_dir))
+        self.test_tag = self.load_file('{}test_tag.txt'.format(data_dir))
+        self.test_ner = self.load_file('{}test_ner.txt'.format(data_dir))
 
         pattern = '.{0,4}\$\$_.{0,4}'
         del_pattern = '\d\.\$\$_\d|\d\$\$_\d|\$\$_，|\$\$_年'
@@ -96,30 +114,51 @@ class pretreat:
 
         '''load dict'''
         if not mode:
-            with open('%smedicine_dict.txt' % pickle_dir, 'r') as f:
+            with open('{}medicine_dict.txt'.format(pickle_dir), 'r') as f:
                 medicine_dict = [ii.strip() for ii in f.readlines()]
             self.medicine_dict = medicine_dict
+            ''' load medicine dict '''    
+            medicine_noun = self.load_medicine_dict(medicine_dict)
+            self.prop_dict = [*self.prop_dict, *medicine_noun]
             return
 
-        medicine = pickle.load(open('%smedicine_dict.pkl' % pickle_dir, 'rb'))
+        medicine = pickle.load(open('{}medicine_dict.pkl'.format(pickle_dir), 'rb'))
         medicine_dict = medicine.split('\n')
 
-        ctb8 = pickle.load(open('%sctb8.pkl' % pickle_dir, 'rb'))
-        msra = pickle.load(open('%smsra.pkl' % pickle_dir, 'rb'))
-        weibo = pickle.load(open('%sweibo.pkl' % pickle_dir, 'rb'))
+        ctb8 = pickle.load(open('{}ctb8.pkl'.format(pickle_dir), 'rb'))
+        msra = pickle.load(open('{}msra.pkl'.format(pickle_dir), 'rb'))
+        weibo = pickle.load(open('{}weibo.pkl'.format(pickle_dir), 'rb'))
         other_dict = set([*ctb8, *msra, *weibo])
 
         medicine_dict = [ii for ii in medicine_dict if ii not in other_dict]
         if not repeat:
             medicine_blank = '   '.join(medicine_dict)
-            medicine_dict = [
-                ii for ii in medicine_dict if medicine_blank.count(ii) == 1]
+            medicine_dict = self.have_substring(medicine_dict, medicine_blank)
         medicine_dict = [*medicine_dict, *self.other_dict]
         print(len(medicine_dict))
-        with open('%smedicine_dict.txt' % pickle_dir, 'w') as f:
+        with open('{}medicine_dict.txt'.format(pickle_dir), 'w') as f:
             f.write('\n'.join(medicine_dict))
 
         self.medicine_dict = medicine_dict
+
+    @jit
+    def have_substring(self, medicine_dict, medicine_blank):
+        ''' jit accelerate filter substring '''
+        medicine_result = []
+        distinguish_pattern = '.*性$|.*状$'
+        for ww in medicine_dict:
+            if len(re.findall(distinguish_pattern, ww)) or (len(ww) > 3 and medicine_blank.count(ww) == 1):
+                medicine_result.append(ww)
+        return medicine_result
+    
+    @jit
+    def load_medicine_dict(self, medicine_dict):
+        ''' jit load medicine dict '''
+        result = []
+        for ii in medicine_dict:
+            if len(re.findall(self.medicine_pattern, ii)):
+                result.append((ii, 'n'))
+        return result
 
     def segment_test(self, types=2, mode=True, noThu=True):
         """
@@ -134,7 +173,7 @@ class pretreat:
         seg = pkuseg.pkuseg(model_name='medicine')
         pos_pkuseg = [' '.join(seg.cut(ii)) for ii in origin_word]
         seg = pkuseg.pkuseg(model_name='medicine',
-                            user_dict='%smedicine_dict.txt' % pickle_dir)
+                            user_dict='{}medicine_dict.txt'.format(pickle_dir))
         pos_pkuseg_v2 = [' '.join(seg.cut(ii)) for ii in origin_word]
 
         '''jieba'''
@@ -211,7 +250,7 @@ class pretreat:
 
         '''del pattern word'''
         tag_jieba_list = self.tag_rule(
-            origin_word, ns_pkuseg, self.difference_word)
+            origin_word, ns_pkuseg, self.difference_word, name_pku)
 
         tag_jieba_str = [' '.join([str(jj) for jj in ii])
                          for ii in tag_jieba_list]
@@ -246,7 +285,7 @@ class pretreat:
 
         self.evaluation_pos(pos_jieba_v2, ref)
         tag_jieba_list = self.tag_rule(
-            origin_word, ns_pkuseg, self.difference_word)
+            origin_word, ns_pkuseg, self.difference_word, name_pku)
         tag_jieba_str = [' '.join([str(jj) for jj in ii])
                          for ii in tag_jieba_list]
 
@@ -321,8 +360,8 @@ class pretreat:
         pos tag optimization by using jieba
         """
         ref = self.train_tag if mode else self.test_tag
-        pattern = '.*性.*'
-        pattern_end = '.*性$'
+        pattern = '.*性.*|.*状'
+        pattern_end = '.*性$|.*状'
         if origin_word is None:
             origin_word = self.origin_word if mode else self.test_origin
         if build_ref:
@@ -344,16 +383,14 @@ class pretreat:
 
         '''del pattern word'''
         tag_jieba_list = self.tag_rule(
-            origin_word, ns_pkuseg, self.difference_word)
+            origin_word, ns_pkuseg, self.difference_word, name_pku)
 
         tag_jieba_str = [' '.join([str(jj) for jj in ii])
                          for ii in tag_jieba_list]
         tag_jieba = sum(tag_jieba_list, [])
         tag = set([jj for ii, jj in tag_jieba])
 
-        name_jieba = [ii for ii, jj in tag_jieba if jj == 'nr']
-        name_word = [ii for ii in name_jieba if ii in name_pku and len(
-            ii) > 1 and ii not in self.name_exec]
+        name_word = [ii for ii, jj in tag_jieba if jj == 'nr']
 
         ns_jieba = [ii for ii, jj in tag_jieba if jj == 'ns']
         nt_jieba = [ii for ii, jj in tag_jieba if jj == 'nt']
@@ -373,12 +410,13 @@ class pretreat:
             pattern, ii)[0]) == 3 and ii not in self.end_exec and ii not in end_word_end]
         # for ii in end_word:
         #     jieba.del_word(ii)
+        self.prop_dict = [*self.prop_dict, *[(ii, 'b') for ii in end_word_end]]
         for (ii, jj) in self.prop_dict:
             jieba.add_word(ii, tag=jj)
         pos_jieba_v2 = [' '.join(jieba.cut(ii)) for ii in origin_word]
 
         tag_jieba_list = self.tag_rule(
-            origin_word, ns_pkuseg, self.difference_word)
+            origin_word, ns_pkuseg, self.difference_word, name_pku)
         tag_jieba_str = [' '.join([str(jj) for jj in ii])
                          for ii in tag_jieba_list]
 
@@ -390,6 +428,7 @@ class pretreat:
                 name_family[ii], name_end[ii]))
         pos_jieba_str = pos_jieba_str.replace('$ $ _', '$$_')
         pos_jieba_str = pos_jieba_str.replace('$ $ _', '$$_')
+        pos_jieba_str = pos_jieba_str.replace('\\\$\$_', '$$_')
         pos_jieba_v3 = pos_jieba_str.split('||')
 
         '''tag name & `$$_`'''
@@ -405,17 +444,17 @@ class pretreat:
             ' </w //w sup/nx >/w', '</sup>').replace('</w sub/nx >/w ', '<sub>').replace(' </w //w sub/nx >/w', '</sub>')
 
         '''1. 2. '''
-        for ii in range(10):
+        for ii in range(30):
             tag_jieba_str_temp = tag_jieba_str_temp.replace(
-                '%d./m' % ii, '%d/m ./w' % ii)
-        for ii in end_word_end:
-            tag_jieba_str_temp = tag_jieba_str_temp.replace(
-                '%s/n' % ii, '%s/n 性/k' % ii[:-1])
+                '%d./w' % ii, '%d/m ./w' % ii)
+        # for ii in end_word_end:
+        #     tag_jieba_str_temp = tag_jieba_str_temp.replace(
+        #         '%s/n' % ii, '%s/n 性/k' % ii[:-1])
         # tag_jieba_str_temp = tag_jieba_str_temp.replace('小管囊性/n', '小管 ')
 
         '''/n 性/k'''
-        tag_jieba_str_temp = re.sub('/. 性/n', '/n 性/k', tag_jieba_str_temp)
-        tag_jieba_str_temp = re.sub('/.. 性/n', '/n 性/k', tag_jieba_str_temp)
+        # tag_jieba_str_temp = re.sub('/. 性/n', '/n 性/k', tag_jieba_str_temp)
+        # tag_jieba_str_temp = re.sub('/.. 性/n', '/n 性/k', tag_jieba_str_temp)
         tag_jieba_str_temp = re.sub('囊/Ng 腔/.', '囊腔/n', tag_jieba_str_temp)
         tag_jieba_str_temp = re.sub('囊/Ng 炎/.', '囊炎/n', tag_jieba_str_temp).replace('囊/Ng ', '囊')
         tag_jieba_str_temp = re.sub('/. 性病变/n', '/n 性/k 病变/n', tag_jieba_str_temp)
@@ -441,7 +480,7 @@ class pretreat:
                         f.write('\n'.join(tag_jieba_v3))
 
         print(name_word)
-        print(set(name_jieba))
+        # print(set(name_jieba))
         print(set(name_pku))
         print(name_family)
         print(name_end)
@@ -478,8 +517,8 @@ class pretreat:
         self.origin_ner_list = origin_ner_list
         self.origin_ner_str = origin_ner_str
 
-        stop_dis = ['c', 'p', 'v', 'w', 'u', 'd']
-        stop_body = ['c', 'p', 'v', 'w', 'u', 'd', 'k', 'a', 'm', 'r', 'i', 't', 'b', 'l', 'z', 'n']
+        stop_dis = ['c', 'p', 'v', 'w', 'u', 'd', 'q', 'f', 'r', 't']
+        stop_body = ['c', 'p', 'v', 'w', 'u', 'd', 'k', 'a', 'r', 'i', 't', 'b', 'l', 'z', 'n', 'q', 'f']
         ner_need = ['disease', 'symptom', 'test', 'treatment']
         for ii in ner_need:
             self.extract_ner(ii, stop_dis)
@@ -491,9 +530,10 @@ class pretreat:
         print(wait_dis)
         print(replace_dis)
         for (ii, jj) in wait_dis:
-            origin_ner_str = origin_ner_str.replace(ii, '%d%d%d'%(jj,jj,jj))
+            # if ii == ''
+            origin_ner_str = origin_ner_str.replace(ii, '@%d@@%d@@@%d@@@@'%(jj,jj,jj))
         for (_, jj) in wait_dis:
-           origin_ner_str = origin_ner_str.replace('%d%d%d'%(jj,jj,jj),replace_dis[jj])
+           origin_ner_str = origin_ner_str.replace('@%d@@%d@@@%d@@@@'%(jj,jj,jj),replace_dis[jj])
 
         ''' longest-submatch '''
         wait_body = [(jj, ii) for ii, jj in enumerate(self.wait_body)]
@@ -502,9 +542,9 @@ class pretreat:
         print(wait_body)
         print(replace_body)
         for (ii, jj) in wait_body:
-            origin_ner_str = origin_ner_str.replace(ii, '%d%d%d'%(jj,jj,jj))
+            origin_ner_str = origin_ner_str.replace(ii, '@@@@%d@@@%d@@%d@'%(jj,jj,jj))
         for (_, jj) in wait_body:
-           origin_ner_str = origin_ner_str.replace('%d%d%d'%(jj,jj,jj),replace_body[jj])  
+           origin_ner_str = origin_ner_str.replace('@@@@%d@@@%d@@%d@'%(jj,jj,jj),replace_body[jj])  
         # origin_ner_str = origin_ner_str.replace(']sym 、/w [', ' 、/w ')
         # origin_ner_str = origin_ner_str.replace(']sym 及/c [', ' 及/c ')
         # origin_ner_str = origin_ner_str.replace(']sym 和/c [', ' 和/c ')
@@ -514,6 +554,7 @@ class pretreat:
         origin_ner_str = origin_ner_str.replace('[肺炎/n]dis ', '肺炎/n ')
 
         '''nt'''
+        origin_ner_str = origin_ner_str.replace('国际/n 小儿/n 肿瘤/n 协会/n', '[国际/n 小儿/n 肿瘤/n 协会/n]nt')
         origin_ner_str = origin_ner_str.replace('北京医科大学/nt 出版社/n', '[北京/ns 医科/n 大学/n 出版社/n]nt')
         origin_ner_str = origin_ner_str.replace('北京/ns 儿童医院/nt', '[北京/ns 儿童/n 医院/n]nt')
         ner_result = origin_ner_str.split('||')
@@ -538,11 +579,8 @@ class pretreat:
                        for ii in extract_list if len(ii.split())}
 
         for ii in range(len(origin_ner_list)):
-
             if self.have_match(origin_ner_list, ii, pattern_end):
-
                 pattern_len, _ = pattern_end[origin_ner_list[ii]]
-
                 last_index = ii - 1
                 try:
                     last_flag = origin_ner_list[last_index].split('/')[1][0]
@@ -579,35 +617,61 @@ class pretreat:
         temp_origin = ' '.join(origin_list)
         if temp_origin in self.ner_error:
             return
-        if types == 'body':
+        if types == 'bod':
             self.wait_body.append('%s' % temp_origin)
             self.replace_body.append('[%s]%s' % (temp_origin, types))
             return
         self.wait_dis.append('%s' % temp_origin)
         self.replace_dis.append('[%s]%s' % (temp_origin, types))
 
-    def tag_rule(self, origin_data, ns_pkuseg, end_word_two=None):
+    def tag_rule(self, origin_data, ns_pkuseg, end_word_two=None, name_pku=[]):
         '''tag rule'''
         tag_jieba_list = []
         eng_pattern = '[a-zA-Z]+'
-        for ii in origin_data:
+        error = []
+        seg = pkuseg.pkuseg(model_name='medicine', postag=True)
+
+        for mm in origin_data:
             temp_tag = []
-            for ii in pseg.cut(ii):
+            for ii in pseg.cut(mm):
                 flag = ii.flag
                 if flag[0] in self.tag_first:
                     ii.flag = flag[0]
-                if flag == 'nrt':
-                    ii.flag = 'nr'
+                if flag == 'nrt' or flag == 'nr':
+                    if ii.word in name_pku and ii.word not in self.name_exec and len(ii.word) > 1:
+                        ii.flag = 'nr'
+                    else:
+                        ii.flag = 'n'
                 if flag in self.tag_upper:
                     ii.flag = ii.flag[0].upper() + ii.flag[1:]
                 if flag in ['x', 'm', 'w']:
-                    if ii.word.isdigit() or ii.word in self.digit_exec:
+                    if ii.word.isdigit() or ii.word in self.digit_exec or ii.word in self.roman:
                         ii.flag = 'm'
+                    elif len(re.findall("[\s+\.\!\/_,$%^*(+\"\']+|[+——！，。？、~@#￥%……&*（）]+", ii.word)):
+                       ii.flag = 'w' 
+                    elif len(re.findall(u'[\u4e00-\u9fa5]+', ii.word)):
+                        pkuseg_pos_tmp = seg.cut(ii.word)
+                        for jj, kk in pkuseg_pos_tmp[:-1]:
+                            nn = [tt for tt in pseg.cut(ii.word)][0]
+                            nn.word = jj
+                            nn.flag = kk
+                            temp_tag.append(nn)
+                            print(111, nn)
+                        ii.word = pkuseg_pos_tmp[-1][0] 
+                        ii.flag = pkuseg_pos_tmp[-1][1]
+                        # print(222, ii)
+                        # /ii.flag = 'n'
+                    elif len(re.findall(eng_pattern, ii.word)):
+                        ii.flag = 'nx'
                     else:
                         ii.flag = 'w'
                 if len(re.findall(eng_pattern, ii.word)):
                     if ii.word in self.unit:
                         ii.flag = 'q'
+                    elif ii.word in self.foreigners:
+                        ii.flag  = 'nrx'
+                    elif ii.word in self.distance:
+                        ii.flag = 'ns'
                     else:
                         ii.flag = 'nx'
                 if flag == 'ns':
@@ -619,8 +683,11 @@ class pretreat:
                         ii.flag = 'n'
                 if end_word_two is not None and ii.word in end_word_two:
                     ii.flag = 'b'
+                if ii.word in self.name:
+                    ii.flag='nr'
                 temp_tag.append(ii)
             tag_jieba_list.append(temp_tag)
+        self.error = set(error)
         return tag_jieba_list
 
     def tag_data(self, types=2, mode=True):
