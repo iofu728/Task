@@ -4,7 +4,7 @@
 
 | Name                                                                                                                       | Classify          | Type           | Method                    | Modify |
 | -------------------------------------------------------------------------------------------------------------------------- | ----------------- | -------------- | ------------------------- | ------ |
-| Deecamp 2019 Exam A                                                                                                        | Basic Knowledge   | Test           | -                         | 190427 |
+| [Deecamp 2019 Exam A](#deecamp-2019-exam-a)                                                                                | Basic Knowledge   | Test           | -                         | 190427 |
 | [NLP cbb Task1: _Medicine Corpus processing_](#nlp-cbb-task1-medicine-corpus-processing)                                   | Linguistics       | Generate       | Jieba + Dict + Rules      | 190418 |
 | [Semantic Task2: _SemEval2017-Task4-SentimentAnalysis_](#semantic-course-task2-semeval2017-task4-sentimentanalysis)        | Sentiment         | Classify       | TextCNN & Bert            | 190414 |
 | [NLP senior Task1: _SemEval2018-Task7-RelationClassification_](#nlp-senior-task1-semeval2018-task7-relationclassification) | Semantic Relation | Multi Classify | TextCNN & LR & LinearSV   | 190411 |
