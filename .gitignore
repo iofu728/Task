@@ -29,3 +29,5 @@ venv
 
 # pkuseg
 pkuseg
+
+.DS_Store
