@@ -4,6 +4,7 @@
 
 | Name                                                                                                                       | Classify          | Type           | Method                    | Modify |
 | -------------------------------------------------------------------------------------------------------------------------- | ----------------- | -------------- | ------------------------- | ------ |
+| [Deecamp 2019 Exam A](#deecamp-2019-exam-a)                                                                                | Basic Knowledge   | Test           | -                         | 190427 |
 | [NLP cbb Task1: _Medicine Corpus processing_](#nlp-cbb-task1-medicine-corpus-processing)                                   | Linguistics       | Generate       | Jieba + Dict + Rules      | 190418 |
 | [Semantic Task2: _SemEval2017-Task4-SentimentAnalysis_](#semantic-course-task2-semeval2017-task4-sentimentanalysis)        | Sentiment         | Classify       | TextCNN & Bert            | 190414 |
 | [NLP senior Task1: _SemEval2018-Task7-RelationClassification_](#nlp-senior-task1-semeval2018-task7-relationclassification) | Semantic Relation | Multi Classify | TextCNN & LR & LinearSV   | 190411 |
@@ -12,6 +13,10 @@
 | [Interview](#interview)                                                                                                    | Feature           | Classify       | lightGBM                  | 190318 |
 | [Elo](#elo)                                                                                                                | Feature           | Classify       | lightGBM                  | 190304 |
 | [Titanic](#titanic)                                                                                                        | Feature           | Classify       | lightGBM                  | 181220 |
+
+## DeeCamp 2019 Exam A
+
+- **Problem**: [DeeCamp 2019 Exam A](https://github.com/iofu728/Task/blob/master/interview/deeCamp.md)
 
 ## NLP cbb Task1: _Medicine Corpus processing_
 
