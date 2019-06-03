@@ -1,7 +1,7 @@
 > 🤧Some tasks for competition by gunjianpan
 
 ```console
-❱❱❱ ❱❱❱ ❱❱❱ ❱❱❱ ❱❱❱ ❱❱❱ ❱❱❱ ❱❱❱ ❱❱❱ ❱❱❱
+❱ ❱❱ ❱❱❱ ❱❱❱❱ ❱❱❱❱ ❱❱❱❱❱ ❱❱❱❱❱❱ ❱❱❱❱❱❱❱
 ```
 
 ## Navigation
@@ -30,14 +30,14 @@
 
 ## NLP senior Task2: _SemEval2013-Task13-WordSenseInduction_
 
-- **Task**: [SemEval2017-Task4-SentimentAnalysis](http://alt.qcri.org/semeval2017/task4/)
+- **Task**: [SemEval2013-Task13-WordSenseInduction](http://alt.qcri.org/semeval2013/task13/)
 - **Code**: [pku-nlp-forfun/SemEval2013-WordSenseInduction](https://github.com/pku-nlp-forfun/SemEval2013-WordSenseInduction)
 - **Final paper**: [Multi-fusion on SemEval-2013 Task13: Word Sense Induction](https://github.com/pku-nlp-forfun/SemEval2013-Task13-Paper/blob/master/main.pdf)
 - **Result**: **11.06%**/Fuzzy NMI, **57.72%**/Fuzzy B-Cubed, **25.27%**/Average
 
 ## Semantic Course Task3: _NLPCC 2019 Task2 Open Domain Semantic Parsing_
 
-- **Task**: Senantic Parsing
+- **Task**: [Senantic Parsing](http://tcci.ccf.org.cn/conference/2019/dldoc/taskgline02.pdf)
 - **Code**: [semantic/task3](https://github.com/iofu728/Task/tree/develop/semantic/task3/semantic3)
 - **Final paper**: [semantic/task3](https://github.com/iofu728/Task/blob/develop/semantic/task3/final_paper/main.pdf)
 - - **Result**: BLEU 0.538
