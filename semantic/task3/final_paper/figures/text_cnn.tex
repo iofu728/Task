@@ -1,0 +1,20 @@
+\begin{table*}[htbp!] % here top bottom page (! = remove further restrictions)
+    \centering
+    \begin{tabular}{llccccccc}
+    \midrule
+    Text Position  &  Pad position          & Recall         & Precision       & Macro-F1        & Accuracy & Pos. &Neu. & Neg.\\
+    \midrule
+    no   & before 0  & 61.39 & 49.50 & 54.81 & 57.57 & 41.76 & \bf85.10 & 21.64 \\
+    no  & after 1   & 64.77 & 51.93 & 57.64 & 61.10 & 53.97 & 82.90 & 18.91 \\
+    no  & before -1 & 63.08 & 52.18 & 57.11 & 59.20 & 45.72 & 83.17 & 27.64 \\
+    no  & after end & 62.05 & 57.54 & 59.71 & 63.00 & 57.58 & 76.85 & 38.19 \\
+    ekphrasis   & before 0  & 61.61 & \bf65.62 & 63.55 & 63.70 & 69.12 & 56.54 & \bf71.21 \\
+    ekphrasis  & after 1   & \bf66.70 & 59.73 & 63.02 & 66.27 & 60.88 & 80.92 & 37.37 \\
+    ekphrasis  & before -1 & 64.71 & 61.61 & 63.12 & 65.23 & \bf77.62 & 61.70 & 45.51 \\
+    ekphrasis  & after end & 65.36 & 62.37 & \bf63.83 & \bf66.93 & 70.02 & 71.12 & 45.98 \\
+
+    \bottomrule
+    \end{tabular}
+\caption{Comparison between different Text Processor \& Pad position using TextCNN model on subtask A data (in \%)}
+\label{tab:text_cnn}
+\end{table*}

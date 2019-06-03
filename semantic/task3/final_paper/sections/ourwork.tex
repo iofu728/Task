@@ -1,0 +1,50 @@
+\section{Our work}
+
+Our goal is to learn semantic parsers from instances of natural language expressions paired with their structured meaning representations.
+
+Let~$x = x_1 \cdots x_{|x|}$ denote a natural language expression, and~$y = y_1 \cdots y_{|y|}$ its meaning representation. We wish to estimate~$p\left(y | x\right)$, the conditional probability of meaning representation~$y$ given input~$x$. We decompose~$p\left(y | x\right)$ into a two-stage generation process:
+\begin{equation}
+\label{eq:overview}
+p\left(y | x\right) = p\left(y | x, a \right) p\left(a | x\right)
+\end{equation}
+
+\subsection{Encoder-Decoder}
+\label{sec:encoder}
+
+An \textit{encoder} is used to encode the natural language input $x$ into vector representations. Then, a \textit{decoder} learns to compute $p\left( a | x \right)$ and generate the sketch $a$ conditioned on the encoding vectors.
+
+\paragraph{Input Encoder}
+Every input word is mapped to a vector via
+$\mathbf{x}_t = \mathbf{W}_x \mathbf{o}\left( x_t \right) $, where
+$\mathbf{W}_x \in \mathbb{R}^{n \times |\mathcal{V}_x|}$ is an
+embedding matrix, $|\mathcal{V}_x|$~is the vocabulary size, and
+$\mathbf{o}\left( x_t \right)$~a word embedding vector.  We use a
+bi-directional recurrent neural network with gated recurrent unit as the input encoder.
+
+\input{figures/test.tex}
+
+\subsection{Attention Structure}
+\label{sec:Attention}
+
+Our encoder and decoder are tied to each other through a multi-hop
+attention mechanism\cite{luong2015effective, vaswani2017attention}. For each decoder layer $\ell$, we compute the
+attention $a^{\ell}_{ij}$ of state $i$ and source element $j$ as:
+\begin{align}
+a^{\ell}_{ij} = \frac{\mbox{exp}(d^{\ell}_i \cdot z^u_j)}{\sum^m_{t=1} \mbox{exp}(d^{\ell}_i \cdot z^u_t)}, \label{eq:attention}
+\end{align}
+\noindent where $d^{\ell}_i = W^{\ell}_dh^{\ell}_i+b^{\ell}_i+g_i$ is
+the decoder state summary combining the current decoder state
+$h^{\ell}_i$ and the previous output element embedding $g_i$. The
+vector $\mathbf{z^u}$ is the output from the last encoder layer
+$u$. The conditional input $c^{\ell}_i$ to the current decoder layer
+is a weighted sum of the encoder outputs as well as the input element
+embeddings $e_j$:
+\begin{align}
+c^{\ell}_i = \sum^m_{j=1} a^{\ell}_{ij}(z^u_j+e_j). \label{eq:decinput}
+\end{align}
+
+The attention mechanism described here performs multiple attention
+``hops'' per time step and considers which words have been previously
+attended to. It is therefore different from single-step attention in
+recurrent neural networks \cite{bahdanau2014neural}, where the attention
+and weighted sum are computed over $\mathbf{z^u}$ only.

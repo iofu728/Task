@@ -1,0 +1,119 @@
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{capt-of}
+\usepackage{tabularx}
+\usepackage[caption=false]{subfig}
+\usepackage{epsfig}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage{scalerel}
+%\usepackage[dvipsnames]{xcolor}
+\usepackage[inline]{enumitem}
+\usepackage{listings}
+\usepackage{varwidth}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+\usepackage{todonotes}
+\usepackage{cleveref}
+\newcommand{\crefrangeconjunction}{--}
+\usepackage{stmaryrd}
+\usepackage{bbm}
+
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\newcommand{\tx}[1]{``\textit{#1}''}
+\DeclareMathOperator\softmax{\operatorname{softmax}}
+\DeclareMathOperator\softsign{\operatorname{softsign}}
+\DeclareMathOperator\sigm{\operatorname{sigm}}
+\DeclareMathOperator\sigmoid{\operatorname{sigmoid}}
+\DeclareMathOperator\mytanh{\operatorname{tanh}}
+\DeclareMathOperator\avg{\operatorname{avg}}
+\DeclareMathOperator\var{\operatorname{var}}
+\DeclareMathOperator\minimize{\operatorname{minimize}}
+\DeclareMathOperator\maximize{\operatorname{maximize}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\mlp}{\operatorname{MLP}}
+\DeclareMathOperator*{\lstm}{\operatorname{f_{LSTM}}}
+
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{officeblue}{RGB}{0,102,204}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{mybrickred}{RGB}{182,50,28}
+\newcommand\mybox[2][]{\tikz[overlay]\node[inner sep=1pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\definecolor{fillcolor}{RGB}{216,217,252}
+\newcommand\bg[1]{\mybox[fill=blue!20]{#1}}
+\newcommand\rg[1]{\mybox[fill=red!20]{#1}}
+
+%%%%%Algorithm Box Package%%%%%
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\algnewcommand\algorithmicrequireb{{\hspace{0.95cm}}}
+\algnewcommand\INPTDESCB{\item[\algorithmicrequireb]}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\algnewcommand\algorithmicfuncdesc{\textbf{Function:}}
+\algnewcommand\FUNCDESC{\item[\algorithmicfuncdesc]}
+\algnewcommand\algorithmicfuncdescb{{\hspace{0.86cm}}}
+\algnewcommand\FUNCDESCB{\item[\algorithmicfuncdescb]}
+\algnewcommand{\algorithmicgoto}{\textbf{goto}}
+\algnewcommand{\Goto}[1]{\algorithmicgoto~\ref{#1}}
+\newcommand*\Let[2]{\State {#1 $\gets$ #2}}
+\newcommand*\LineLet[2]{#1 $\gets$ #2}
+%\newcommand*\AddOne[1]{\State #1 $\gets$ #1 $+1$}
+\newcommand*\AddOne[1]{\State #1 $++$}
+\newcommand*\LineComment[1]{\Statex \(\triangleright\) #1}
+\newcommand*\LineFor[2]{\State {\algorithmicfor~#1~\algorithmicdo~~~~#2}}
+\newcommand*\LineIf[2]{\State {\algorithmicif~#1~\algorithmicthen~~~~#2}}
+\newcommand\AlgComment[1]{\color{mybrickred}{$\triangleright$ \textit{#1}}}
+%%%%%Algorithm Box Package%%%%%
+
+\newcommand\mycode[1]{\textsf{\fontsize{10}{12}\selectfont #1}}
+\newcommand\base{\textsc{OneStage}}
+\newcommand\ours{\textsc{Coarse2Fine}}
+
+
+\lstdefinestyle{ifttt}{
+	language=Python,
+	otherkeywords={Trigger,Action,-,IF,THEN},             % Add keywords here
+	keywordstyle=\bfseries\color{deepblue},
+	emph={MyClass,__init__},          % Custom highlighting
+	emphstyle=\color{deepred},    % Custom highlighting style
+	showstringspaces=false,
+	breaklines=true,
+	escapeinside=||,
+	columns=fullflexible,
+	basicstyle=\fontfamily{cmtt}\small,
+	belowskip=-\baselineskip,
+	aboveskip=-0.7\baselineskip
+}
+
+\lstdefinestyle{django}{
+	language=Python,
+	otherkeywords={self},             % Add keywords here
+	keywordstyle=\bfseries\color{deepblue},
+	emph={MyClass,__init__},          % Custom highlighting
+	emphstyle=\color{deepred},    % Custom highlighting style
+	showstringspaces=false,
+	breaklines=true,
+	escapeinside=||,
+	columns=fullflexible,
+	basicstyle=\fontfamily{cmtt}\small,
+	belowskip=-\baselineskip,
+	aboveskip=-0.7\baselineskip
+}
+
+\lstdefinestyle{pythoncode}{
+	language=Python,
+	otherkeywords={self},             % Add keywords here
+	keywordstyle=\bfseries\color{deepblue},
+	emph={MyClass,__init__},          % Custom highlighting
+	emphstyle=\color{deepred},    % Custom highlighting style
+	showstringspaces=false,
+	breaklines=true,
+	escapeinside=||,
+	columns=fullflexible,
+}
