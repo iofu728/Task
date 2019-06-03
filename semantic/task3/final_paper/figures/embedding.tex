@@ -1,0 +1,17 @@
+\begin{table*}[htbp!] % here top bottom page (! = remove further restrictions)
+    \centering
+    \begin{tabular}{llccccccc}
+    \midrule
+    Embedding Model  &  Text Processor          & Recall         & Precision       & Macro-F1        & Accuracy & Pos. &Neu. & Neg.\\
+    \midrule
+    no        & no           & 45.70   & 43.12     & 44.38    & 48.18    & 43.03 & \bf74.68    & 11.66 \\
+    word2Vec  & no           & 44.87   & 42.48     & 43.65    & 51.37    & 60.81    & 57.27    & 9.37  \\
+    fastText  & no           & 43.87   & 42.04     & 42.93    & 46.60    & 44.97    & 72.93    & 8.21  \\
+    no        & ekphrasis    & 61.07   & 62.15     & 61.61    & 62.34 & \bf64.00    & 64.83    & 57.63 \\
+    word2vec  & ekphrasis    & 61.49   & 62.35     & 61.92 & \bf64.37    & 62.52    & 68.72    & 55.80 \\
+    fastText  & ekphrasis & \bf62.67 & 6\bf4.07 & \bf63.36    & 63.81    & 63.03    & 61.58 & \bf67.60 \\
+    \bottomrule
+    \end{tabular}
+\caption{Comparison between different Embedding mode \& Text Processor using LibLinear logistic regression model on subtask A data (in \%)}
+\label{tab:embedding}
+\end{table*}

@@ -1,0 +1,19 @@
+\begin{table*}[htbp!] % here top bottom page (! = remove further restrictions)
+    \centering
+    \begin{tabular}{rl}
+    \midrule
+        Sentences1:     &\textbf{\underline{Indian Mi Fans}}. Are Are Are \textbf{\underline{you}} ok? \\
+        Sentences2:     &\textbf{\underline{Indian Mi Fans}}. Are \textbf{\underline{you}} ok? \\ 
+        Before entity1: &\begin{scriptsize}[PAD] [PAD] \end{scriptsize} \textbf{\underline{Indian Mi Fans}}.  Are Are Are \textbf{\underline{you}} ok? \\
+                        &\begin{scriptsize}[PAD] [PAD] [PAD] [PAD] \end{scriptsize}  \textbf{\underline{Indian Mi Fans}}. Are \textbf{\underline{you}} ok? \\
+        After entity1:  &\textbf{\underline{Indian Mi Fans}}. \begin{scriptsize}[PAD] [PAD] \end{scriptsize} Are Are Are \textbf{\underline{you}} ok?\\
+                        &\textbf{\underline{Indian Mi Fans}}. \begin{scriptsize}[PAD] [PAD] [PAD] [PAD] \end{scriptsize}  Are \textbf{\underline{you}} ok?\\
+        Before entity2: &\textbf{\underline{Indian Mi Fans}}.  Are Are Are \begin{scriptsize}[PAD] [PAD] \end{scriptsize} \textbf{\underline{you}} ok? \\
+                        &\textbf{\underline{Indian Mi Fans}}. Are \begin{scriptsize}[PAD] [PAD] [PAD] [PAD] \end{scriptsize}  \textbf{\underline{you}} ok? \\
+        After entity2:  &\textbf{\underline{Indian Mi Fans}}. Are Are Are \textbf{\underline{you}} ok? \begin{scriptsize}[PAD] [PAD] \end{scriptsize} \\
+                        &\textbf{\underline{Indian Mi Fans}}. Are \textbf{\underline{you}} ok? \begin{scriptsize}[PAD] [PAD] [PAD] [PAD] \end{scriptsize}  \\
+    \bottomrule
+    \end{tabular}
+\caption{Pad example (MAX sentences size = 12)}
+\label{tab:model}
+\end{table*}

@@ -1,0 +1,128 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[hyperref]{naaclhlt2019}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{xspace}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{tikz,tikz-qtree}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{xfrac}
+\usepackage{graphicx}
+\usepackage{tablefootnote}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\input{settings.tex}
+\pgfplotsset{compat=1.14}
+
+\newcommand\BibTeX{B{\sc ib}\TeX}
+
+\aclfinalcopy % comment this when submitting the paper
+%\def\aclpaperid{***} %  Enter the acl Paper ID here
+
+%\setlength\titlebox{5cm}
+% You can expand the titlebox if you need extra space
+% to show all the authors. Please do not make the titlebox
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+\definecolor{g-red}{HTML}{DB4437}
+\definecolor{g-blue}{HTML}{4285F4}
+\definecolor{g-green}{HTML}{0F9D58}
+\definecolor{g-yellow}{HTML}{F4B400}
+\definecolor{g-orange}{HTML}{FF9800}
+\definecolor{g-grey}{HTML}{9E9E9E}
+
+\setlength{\tabcolsep}{0.3em}
+
+\usepackage{todonotes}
+
+
+\newcounter{mw}
+\newcommand{\mw}[1]{%
+\refstepcounter{mw}%
+{%
+\todo[color=orange, size=\footnotesize]{%
+[\textbf{mw:\themw}] #1}%
+}}%
+
+\newcounter{jd}
+\newcommand{\jd}[1]{%
+\refstepcounter{jd}%
+{%
+\todo[color=green, size=\footnotesize]{%
+[\textbf{jd:\thekt}] #1}%
+}}%
+
+\newcounter{kl}
+\newcommand{\kl}[1]{%
+\refstepcounter{kl}%
+{%
+\todo[color=magenta, size=\footnotesize]{%
+[\textbf{kl:\thekl}] #1}%
+}}%
+
+\newcommand\bertbase{BERT$_{\small \textsc{BASE}}$\xspace}
+\newcommand\bertlarge{BERT$_{\small \textsc{LARGE}}$\xspace}
+
+\title{One Semantic parser base on Seq2Seq in MSParS}
+
+\author{\textbf{Shengqiang Zhang} \quad \textbf{Huiqiang Jiang} \quad \textbf{Yixu Wang} \quad \textbf{Jiangyong Wu} \\
+Peking University \\
+{\tt \{1801210730, 1801210840, 1801210668, 1801210679\}@pku.edu.cn}}
+\date{May 20, 2019}
+
+% REMOVE THIS IN THE FINAL COPY!
+% \hypersetup{draft}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+  \input{sections/abstract}
+\end{abstract}
+
+\input{sections/intro}
+
+\input{sections/ourwork}
+
+\input{sections/experiment}
+
+\input{sections/conclusion}
+
+\begin{algorithm}[t]
+  \caption{match \textsc{shipInfo} and \textsc{healthInfo} V1 \label{alg:sketch}}
+  \begin{algorithmic}[0]
+  \small
+  \Require $e$: ele shipInfo (name, address)
+  \FUNCDESCB $h$: healthInfo (name, address)
+  \FUNCDESCB $e.name$: name $\Rightarrow$ (tradeMark,subbranch)
+  \Ensure $r$: Match result
+
+  \Function{matchEleV1}{$e, h$}
+  \If{$e.name$ match $h.name$}\hfill{\AlgComment{match $\neq$ equal}}
+  \State{\Return{$\argmax$(LCS($e.address$, $h.address$))}}
+  \EndIf
+  \If{$e.address$ match $h.address$}\hfill
+  \State{\Return{$\argmax$(LCS($e.name$, $h.name$))}}
+  \EndIf 
+
+  \State{// if not match, \bf{do word segment,}}
+  \State{$e.nameSeg=seg(e.name)$,}
+  \State{$h.nameSeg=seg(h.name)$, }
+  \State{$e.addrSeg=seg(e.address)$, }
+  \State{$h.addrSeg=seg(h.address)$ }
+  \If{match($e.nameSeg$, $h.nameSeg$) \bf{and} \\ match($e.addrSeg$, $h.addrSeg$)}
+  \State{\Return{$\argmax$(LCS($e.address$, $h.address$))}}
+  \EndIf
+  \State{\Return{$r$}}
+  \EndFunction
+  \normalsize
+  \end{algorithmic}
+  \end{algorithm}
+
+\bibliographystyle{acl_natbib}
+\bibliography{mybib}
+
+\end{document}
