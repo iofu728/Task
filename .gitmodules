@@ -1,0 +1,3 @@
+[submodule "nlpsenior/task3/Chinese_T-Sequence-annotation"]
+	path = nlpsenior/task3/Chinese_T-Sequence-annotation
+	url = https://github.com/iofu728/Chinese_T-Sequence-annotation
