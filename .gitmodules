@@ -10,3 +10,6 @@
 [submodule "nlpsenior/task2/SemEval2013-Task13-Paper"]
 	path = nlpsenior/task2/SemEval2013-Task13-Paper
 	url = https://github.com/pku-nlp-forfun/SemEval2013-Task13-Paper
+[submodule "semantic/task2/SemEval2017-Task4-SentimentAnalysis"]
+	path = semantic/task2/SemEval2017-Task4-SentimentAnalysis
+	url = https://github.com/iofu728/SemEval2017-Task4-SentimentAnalysis
