@@ -1,3 +1,6 @@
 [submodule "nlpsenior/task3/Chinese_T-Sequence-annotation"]
 	path = nlpsenior/task3/Chinese_T-Sequence-annotation
 	url = https://github.com/iofu728/Chinese_T-Sequence-annotation
+[submodule "nlpcbb/task2/CWS_POS_NER"]
+	path = nlpcbb/task2/CWS_POS_NER
+	url = https://github.com/pku-nlp-forfun/CWS_POS_NER
