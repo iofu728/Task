@@ -1,0 +1,21 @@
+[submodule "nlpsenior/task3/Chinese_T-Sequence-annotation"]
+	path = nlpsenior/task3/Chinese_T-Sequence-annotation
+	url = https://github.com/iofu728/Chinese_T-Sequence-annotation
+[submodule "nlpcbb/task2/CWS_POS_NER"]
+	path = nlpcbb/task2/CWS_POS_NER
+	url = https://github.com/pku-nlp-forfun/CWS_POS_NER
+[submodule "nlpsenior/task2/SemEval2013-WordSenseInduction"]
+	path = nlpsenior/task2/SemEval2013-WordSenseInduction
+	url = https://github.com/pku-nlp-forfun/SemEval2013-WordSenseInduction
+[submodule "nlpsenior/task2/SemEval2013-Task13-Paper"]
+	path = nlpsenior/task2/SemEval2013-Task13-Paper
+	url = https://github.com/pku-nlp-forfun/SemEval2013-Task13-Paper
+[submodule "semantic/task2/SemEval2017-Task4-SentimentAnalysis"]
+	path = semantic/task2/SemEval2017-Task4-SentimentAnalysis
+	url = https://github.com/iofu728/SemEval2017-Task4-SentimentAnalysis
+[submodule "nlpsenior/task1/SemEval-2018-RelationClassification"]
+	path = nlpsenior/task1/SemEval-2018-RelationClassification
+	url = https://github.com/pku-nlp-forfun/SemEval-2018-RelationClassification
+[submodule "nlpsenior/task1/SemEval2018-Task7-Paper"]
+	path = nlpsenior/task1/SemEval2018-Task7-Paper
+	url = https://github.com/pku-nlp-forfun/SemEval2018-Task7-Paper
