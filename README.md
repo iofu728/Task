@@ -59,8 +59,7 @@
 
 - **Task**: [Senantic Parsing](http://tcci.ccf.org.cn/conference/2019/dldoc/taskgline02.pdf)
 
-  - In this year’s NLPCC, we call for the Open Domain Semantic Parsing shared task. The goal of this task is to predict the correct logical form (in lambda-calculus) for each question in the test set, based on a given knowledge graph.
-  - In this task, a Multi-perspective Semantic ParSing (or MSParS) dataset will be released, which can be used to evaluate the performance of a semantic parser from different aspects. This dataset includes more than 80,000 human-generated questions, where each question is annotated with entities, the question type and the corresponding logical form. We split MSParS into a train set, a development set and a test set. Both train and development sets will be provided to participating teams, while the test set will NOT. After participating teams submit their output files, we will evaluate their performances.
+  - In this task, a Multi-perspective Semantic ParSing (or MSParS) dataset will be released, which can be used to evaluate the performance of a semantic parser from different aspects. This dataset includes more than 80,000 human-generated questions, where each question is annotated with entities, the question type and the corresponding logical form. We split MSParS into a train set, a development set and a test set
 
 - **Code**: [semantic/task3](https://github.com/iofu728/Task/tree/develop/semantic/task3/semantic3)
 - **Final paper**: [semantic/task3](https://github.com/iofu728/Task/blob/develop/semantic/task3/final_paper/main.pdf)
@@ -90,9 +89,7 @@
 
 - **Task**: [SemEval-2018 task 7 Semantic Relation Extraction and Classification in Scientific Papers](https://competitions.codalab.org/competitions/17422)
 
-  - One of the emerging trends of natural language technologies is their application to scientific literature. There is a constant increase in the production of scientific papers and experts are faced with an explosion of information that makes it difficult to have an overview of the state of the art in a given domain. Recent works from the semantic web, scientometry and natural language processing communities aimed to improve the access to scientific literature, in particular to answer queries that are currently beyond the capabilities of standard search engines. Examples of such queries include finding all papers that address a given problem in a specific way, or to discover the roots of a certain idea.
   - The NLP tasks that underlie intelligent processing of scientific documents are those of information extraction: identifying concepts and recognizing the semantic relation that holds between them. The current task adresses semantic relation extraction and classification into 6 categories, all of them specific to scientific literature.
-  - Information extraction from corpora including relation extraction and classification normally involves a complicated multiple-step process. We provide a framework for evaluating systematically how the single steps affect the ultimate result. Correspondingly, the proposed tasks are split into subtasks that allow to measure the impact of entity annotation quality, the type of entities, and the extraction of relation instances (entity pairs) on relation classification. All of the tasks are centered around the classification of entity pairs in context into six different, non-overlapping categories of semantic relations that are defined in advance. Moreover, one of the subtasks involves the identification of relation instances.
 
 - **Record**: [pku-nlp-forfun/SemEval-2018-RelationClassification](https://github.com/pku-nlp-forfun/SemEval-2018-RelationClassification)
 - **Code**: [pku-nlp-forfun/SemEval-2018-RelationClassification](https://github.com/pku-nlp-forfun/SemEval-2018-RelationClassification)
