@@ -27,6 +27,8 @@ lecture website: https://web.stanford.edu/class/cs224n/
 
 ## Assignments
 
+**`The submission latex template in`** [**[Assignment2]**][21002]
+
 | Due Date | Submission Date | HW                                                                                     | Topic                                   |
 | -------- | --------------- | -------------------------------------------------------------------------------------- | --------------------------------------- |
 | Jan 14   | Feb 19          | Assignment 1 (6%): Introduction to word vectors [[HW]][20001]                          | Co-Occurrence, SVD, GenSim              |
@@ -100,8 +102,9 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [10003]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes03-neuralnets.pdf
 [10005]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes04-dependencyparsing.pdf
 [10006]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes05-LM_RNN.pdf
-[10007]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes06-NMT_seq2seq_attention.pdf
+[10008]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes06-NMT_seq2seq_attention.pdf
 [10009]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/final-project-practical-tips.pdf
 [10010]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes07-QA.pdf
 [20001]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment1/exploring_word_vectors.ipynb
 [20002]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment2/assignment2.pdf
+[21002]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment2/assignment2.tex
