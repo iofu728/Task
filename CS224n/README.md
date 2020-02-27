@@ -36,50 +36,51 @@ lecture website: https://web.stanford.edu/class/cs224n/
 
 ## Course Material
 
-| lecture | Read Date | Name                                                                                                               | Other |
-| ------- | --------- | ------------------------------------------------------------------------------------------------------------------ | ----- |
-| 1       | -         | Word2Vec Tutorial - The Skip-Gram Model                                                                            | -     |
-|         |           | Efficient Estimation of Word Representations in Vector Space (original word2vec paper)                             | -     |
-|         |           | Distributed Representations of Words and Phrases and their Compositionality (negative sampling paper)              | -     |
-| 2       |           | GloVe: Global Vectors for Word Representation (original GloVe paper)                                               | -     |
-|         |           | Improving Distributional Similarity with Lessons Learned from Word Embeddings                                      | -     |
-|         |           | Evaluation methods for unsupervised word embeddings                                                                | -     |
-|         |           | A Latent Variable Model Approach to PMI-based Word Embeddings                                                      | -     |
-|         |           | Linear Algebraic Structure of Word Senses, with Applications to Polysemy                                           | -     |
-|         |           | On the Dimensionality of Word Embedding.                                                                           | -     |
-| 3       |           | Review of differential calculus                                                                                    | -     |
-|         |           | Natural Language Processing (Almost) from Scratch                                                                  | -     |
-| 4       |           | Learning Representations by Backpropagating Errors                                                                 | -     |
-|         |           | Derivatives, Backpropagation, and Vectorization                                                                    | -     |
-|         |           | Yes you should understand backprop                                                                                 | -     |
-| 5       |           | Incrementality in Deterministic Dependency Parsing                                                                 | -     |
-|         |           | A Fast and Accurate Dependency Parser using Neural Networks                                                        | -     |
-|         |           | Dependency Parsing                                                                                                 | -     |
-|         |           | Globally Normalized Transition-Based Neural Networks                                                               | -     |
-|         |           | Universal Stanford Dependencies: A cross-linguistic typology                                                       | -     |
-|         |           | Universal Dependencies website                                                                                     | -     |
-| 6       |           | N-gram Language Models (textbook chapter)                                                                          | -     |
-|         |           | The Unreasonable Effectiveness of Recurrent Neural Networks (blog post overview)                                   | -     |
-|         |           | Sequence Modeling: Recurrent and Recursive Neural Nets (Sections 10.1 and 10.2)                                    | -     |
-|         |           | On Chomsky and the Two Cultures of Statistical Learning                                                            | -     |
-| 7       |           | Sequence Modeling: Recurrent and Recursive Neural Nets (Sections 10.3, 10.5, 10.7-10.12)                           | -     |
-|         |           | Learning long-term dependencies with gradient descent is difficult (one of the original vanishing gradient papers) | -     |
-|         |           | On the difficulty of training Recurrent Neural Networks (proof of vanishing gradient problem)                      | -     |
-|         |           | Vanishing Gradients Jupyter Notebook (demo for feedforward networks)                                               | -     |
-|         |           | Understanding LSTM Networks (blog post overview)                                                                   | -     |
-| 8       |           | Statistical Machine Translation slides, CS224n 2015 (lectures 2/3/4)                                               | -     |
-|         |           | Statistical Machine Translation (book by Philipp Koehn)                                                            | -     |
-|         |           | BLEU (original paper)                                                                                              | -     |
-|         |           | Sequence to Sequence Learning with Neural Networks (original seq2seq NMT paper)                                    | -     |
-|         |           | Sequence Transduction with Recurrent Neural Networks (early seq2seq speech recognition paper)                      | -     |
-|         |           | Neural Machine Translation by Jointly Learning to Align and Translate (original seq2seq+attention paper)           | -     |
-|         |           | Attention and Augmented Recurrent Neural Networks (blog post overview)                                             | -     |
-|         |           | Massive Exploration of Neural Machine Translation Architectures (practical advice for hyperparameter choices)      | -     |
-| 9       |           | Practical Methodology (Deep Learning book chapter)                                                                 | -     |
-| 10      |           | Attention Is All You Need                                                                                          | -     |
-|         |           | Layer Normalization                                                                                                | -     |
-|         |           | Image Transformer                                                                                                  | -     |
-|         |           | Music Transformer: Generating music with long-term structure                                                       | -     |
+| lecture | Read Date | Name                                                                                                               | Other                       |
+| ------- | --------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------- |
+| 1       | -         | Word2Vec Tutorial - The Skip-Gram Model                                                                            | -                           |
+|         |           | Efficient Estimation of Word Representations in Vector Space (original word2vec paper)                             | -                           |
+|         |           | Distributed Representations of Words and Phrases and their Compositionality (negative sampling paper)              | -                           |
+| 2       |           | GloVe: Global Vectors for Word Representation (original GloVe paper)                                               | -                           |
+|         |           | Improving Distributional Similarity with Lessons Learned from Word Embeddings                                      | -                           |
+|         |           | Evaluation methods for unsupervised word embeddings                                                                | -                           |
+|         |           | A Latent Variable Model Approach to PMI-based Word Embeddings                                                      | -                           |
+|         |           | Linear Algebraic Structure of Word Senses, with Applications to Polysemy                                           | -                           |
+|         |           | On the Dimensionality of Word Embedding.                                                                           | -                           |
+| 3       |           | Review of differential calculus                                                                                    | -                           |
+|         |           | Natural Language Processing (Almost) from Scratch                                                                  | -                           |
+|         | Feb 27    | [Adam: A Method for Stochastic Optimization][30001]                                                                | momentum + squared gradient |
+| 4       |           | Learning Representations by Backpropagating Errors                                                                 | -                           |
+|         |           | Derivatives, Backpropagation, and Vectorization                                                                    | -                           |
+|         |           | Yes you should understand backprop                                                                                 | -                           |
+| 5       |           | Incrementality in Deterministic Dependency Parsing                                                                 | -                           |
+|         |           | A Fast and Accurate Dependency Parser using Neural Networks                                                        | -                           |
+|         |           | Dependency Parsing                                                                                                 | -                           |
+|         |           | Globally Normalized Transition-Based Neural Networks                                                               | -                           |
+|         |           | Universal Stanford Dependencies: A cross-linguistic typology                                                       | -                           |
+|         |           | Universal Dependencies website                                                                                     | -                           |
+| 6       |           | N-gram Language Models (textbook chapter)                                                                          | -                           |
+|         |           | The Unreasonable Effectiveness of Recurrent Neural Networks (blog post overview)                                   | -                           |
+|         |           | Sequence Modeling: Recurrent and Recursive Neural Nets (Sections 10.1 and 10.2)                                    | -                           |
+|         |           | On Chomsky and the Two Cultures of Statistical Learning                                                            | -                           |
+| 7       |           | Sequence Modeling: Recurrent and Recursive Neural Nets (Sections 10.3, 10.5, 10.7-10.12)                           | -                           |
+|         |           | Learning long-term dependencies with gradient descent is difficult (one of the original vanishing gradient papers) | -                           |
+|         |           | On the difficulty of training Recurrent Neural Networks (proof of vanishing gradient problem)                      | -                           |
+|         |           | Vanishing Gradients Jupyter Notebook (demo for feedforward networks)                                               | -                           |
+|         |           | Understanding LSTM Networks (blog post overview)                                                                   | -                           |
+| 8       |           | Statistical Machine Translation slides, CS224n 2015 (lectures 2/3/4)                                               | -                           |
+|         |           | Statistical Machine Translation (book by Philipp Koehn)                                                            | -                           |
+|         |           | BLEU (original paper)                                                                                              | -                           |
+|         |           | Sequence to Sequence Learning with Neural Networks (original seq2seq NMT paper)                                    | -                           |
+|         |           | Sequence Transduction with Recurrent Neural Networks (early seq2seq speech recognition paper)                      | -                           |
+|         |           | Neural Machine Translation by Jointly Learning to Align and Translate (original seq2seq+attention paper)           | -                           |
+|         |           | Attention and Augmented Recurrent Neural Networks (blog post overview)                                             | -                           |
+|         |           | Massive Exploration of Neural Machine Translation Architectures (practical advice for hyperparameter choices)      | -                           |
+| 9       |           | Practical Methodology (Deep Learning book chapter)                                                                 | -                           |
+| 10      |           | Attention Is All You Need                                                                                          | -                           |
+|         |           | Layer Normalization                                                                                                | -                           |
+|         |           | Image Transformer                                                                                                  | -                           |
+|         |           | Music Transformer: Generating music with long-term structure                                                       | -                           |
 
 ## License
 
@@ -108,3 +109,4 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [20001]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment1/exploring_word_vectors.ipynb
 [20002]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment2/assignment2.pdf
 [21002]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment2/assignment2.tex
+[30001]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/papers/Adam.pdf
