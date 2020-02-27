@@ -12,27 +12,27 @@ lecture website: https://web.stanford.edu/class/cs224n/
 
 ## Lectures
 
-| Public Date | Study Date | Description                                                          | Other                                                                                          |
-| ----------- | ---------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Jan 7       | Feb 18     | Introduction and Word Vectors [[slide]][1] [[note]][10001]           | derivations of <br> CBOW, SG, NegativeSample,<br> Hierarchical Softmax <br> in [[note]][10001] |
-| Jan 9       | Feb 19     | Word Vectors 2 and Word Senses [[slide]][2] [[note]][10002]          | Glove combine co-ocurence Matix and window base                                                |
-| Jan 14      | Feb 20     | Word Win Classification, Neural Networks[[slide]][3] [[note]][10003] | FP, BP, nn-linear func, optimization                                                           |
-| Jan 16      | Feb 20     | Matrix Calculus and Backpropagation [[slide]][4]                     | Gradient(BP)                                                                                   |
-| Jan 21      | Feb 21     | Linguistic Structure: Dependency Parsing[[slide]][5] [[note]][10005] | Dependency Parsing which nested is common                                                      |
-| Jan 23      | Feb 22     | The probability of a sentence? RNN & LM [[slide]][6] [[note]][10006] | RNN, Gated Structure                                                                           |
-| Jan 28      | Feb 22     | Vanishing Gradients and Fancy RNNs [[slide]][7]                      | Gated, stack, bidirectional                                                                    |
-| Jan 30      | Feb 24     | Machine Translation, Seq2Seq & Attention[[slide]][8] [[note]][10008] | MT, Seq2Seq                                                                                    |
-| Feb 4       | Feb 26     | Practical Tips for Final Projects [[slide]][9] [[note]][10009]       | Research ideas                                                                                 |
-| Feb 6       | Feb 27     | QA, Transformer architectures [[slide]][10] [[note]][10010]          | QA, Attention, start + end                                                                     |
+| Public Date | Study Date | Description                                                              | Other                                                                                       |
+| ----------- | ---------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
+| Jan 7       | Feb 18     | Introduction and Word Vectors<br>[[slide]][1] [[note]][10001]            | derivations <br> CBOW, SG, NegativeSample,<br> Hierarchical Softmax <br> in [[note]][10001] |
+| Jan 9       | Feb 19     | Word Vectors 2 and Word Senses<br>[[slide]][2] [[note]][10002]           | Glove combine co-ocurence Matix and window base                                             |
+| Jan 14      | Feb 20     | Word Win Classification, Neural Networks<br>[[slide]][3] [[note]][10003] | FP, BP, nn-linear func, optimization                                                        |
+| Jan 16      | Feb 20     | Matrix Calculus and Backpropagation<br>[[slide]][4]                      | Gradient(BP)                                                                                |
+| Jan 21      | Feb 21     | Linguistic Structure: Dependency Parsing<br>[[slide]][5] [[note]][10005] | Dependency Parsing which nested is common                                                   |
+| Jan 23      | Feb 22     | The probability of a sentence? RNN & LM<br>[[slide]][6] [[note]][10006]  | RNN, Gated Structure                                                                        |
+| Jan 28      | Feb 22     | Vanishing Gradients and Fancy RNNs<br>[[slide]][7]                       | Gated, stack, bidirectional                                                                 |
+| Jan 30      | Feb 24     | Machine Translation, Seq2Seq & Attention<br>[[slide]][8] [[note]][10008] | MT, Seq2Seq                                                                                 |
+| Feb 4       | Feb 26     | Practical Tips for Final Projects<br>[[slide]][9] [[note]][10009]        | Research ideas                                                                              |
+| Feb 6       | Feb 27     | QA, Transformer architectures<br>[[slide]][10] [[note]][10010]           | QA, Attention, start + end                                                                  |
 
 ## Assignments
 
 **`The submission latex template in`** [**[Assignment2]**][21002]
 
-| Due Date | Submission Date | HW                                                                                     | Topic                                   |
-| -------- | --------------- | -------------------------------------------------------------------------------------- | --------------------------------------- |
-| Jan 14   | Feb 19          | Assignment 1 (6%): Introduction to word vectors [[HW]][20001]                          | Co-Occurrence, SVD, GenSim              |
-| Jan 21   | Feb 27          | Assignment 2 (12%): Derivatives and implementation of word2vec algorithm [[HW]][20002] | naive-softmax, neg-sample, SG, Gradient |
+| Due Date | Submission Date | HW                                                                                        | Topic                                   |
+| -------- | --------------- | ----------------------------------------------------------------------------------------- | --------------------------------------- |
+| Jan 14   | Feb 19          | Assignment 1 (6%): Introduction to word vectors<br>[[HW]][20001]                          | Co-Occurrence, SVD, GenSim              |
+| Jan 21   | Feb 27          | Assignment 2 (12%): Derivatives and implementation of word2vec algorithm<br>[[HW]][20002] | naive-softmax, neg-sample, SG, Gradient |
 
 ## Course Material
 
