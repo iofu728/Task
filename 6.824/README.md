@@ -4,7 +4,7 @@
 
 _Instructor_: **Robert Morris**
 
-23 Lectures + 4 Lab + 1 mid-term exam + 1 final + 1 Final Project
+23 Lectures + 4 Lab + 1 mid-term exam + 1 final exam + 1 Paper question exam
 
 lecture website: https://pdos.csail.mit.edu/6.824
 
