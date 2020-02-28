@@ -24,6 +24,7 @@ lecture website: https://web.stanford.edu/class/cs224n/
 | Jan 30      | Feb 24     | Machine Translation, Seq2Seq & Attention<br>[[slide]][8] [[note]][10008] | MT, Seq2Seq                                                                                 |
 | Feb 4       | Feb 26     | Practical Tips for Final Projects<br>[[slide]][9] [[note]][10009]        | Research ideas                                                                              |
 | Feb 6       | Feb 27     | QA, Transformer architectures<br>[[slide]][10] [[note]][10010]           | QA, Attention, start + end                                                                  |
+| Feb 11      | Feb 28     | ConvNets for NLP<br>[[slide]][11] [[note]][10011]                        | CNN                                                                                         |
 
 ## Assignments
 
@@ -81,6 +82,9 @@ lecture website: https://web.stanford.edu/class/cs224n/
 |         |           | Layer Normalization                                                                                                | -                           |
 |         |           | Image Transformer                                                                                                  | -                           |
 |         |           | Music Transformer: Generating music with long-term structure                                                       | -                           |
+| 11      |           | Convolutional Neural Networks for Sentence Classification                                                          | -                           |
+|         |           | Improving neural networks by preventing co-adaptation of feature detectors                                         | -                           |
+|         |           | A Convolutional Neural Network for Modelling Sentences                                                             | -                           |
 
 ## License
 
@@ -98,6 +102,7 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [8]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture08-nmt.pdf
 [9]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture09-final-projects.pdf
 [10]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture10-QA.pdf
+[11]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture11-convnets.pdf
 [10001]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes01-wordvecs1.pdf
 [10002]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes02-wordvecs2.pdf
 [10003]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes03-neuralnets.pdf
@@ -106,6 +111,7 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [10008]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes06-NMT_seq2seq_attention.pdf
 [10009]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/final-project-practical-tips.pdf
 [10010]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes07-QA.pdf
+[10011]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes08-CNN.pdf
 [20001]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment1/exploring_word_vectors.ipynb
 [20002]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment2/assignment2.pdf
 [21002]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment2/assignment2.tex
