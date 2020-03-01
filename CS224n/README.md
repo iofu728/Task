@@ -26,6 +26,7 @@ lecture website: https://web.stanford.edu/class/cs224n/
 | Feb 6       | Feb 27     | QA, Transformer architectures<br>[[slide]][10] [[note]][10010]           | QA, Attention, start + end                                                                  |
 | Feb 11      | Feb 28     | ConvNets for NLP<br>[[slide]][11] [[note]][10011]                        | CNN                                                                                         |
 | Feb 13      | Feb 29     | Information from parts of words (Subword Models)<br>[[slide]][12]        | Sub-word, BPE, Character-level, morphemes                                                   |
+| Feb 18      | Mar 1      | Contextual Word Representations: BERT <br>[[slide]][13]                  | Pre-BERT & BERT & Post-BERT                                                                 |
 
 ## Assignments
 
@@ -88,6 +89,7 @@ lecture website: https://web.stanford.edu/class/cs224n/
 |         |           | A Convolutional Neural Network for Modelling Sentences                                                                           | -                           |
 | 12      |           | Minh-Thang Luong and Christopher Manning. Achieving Open Vocabulary Neural Machine Translation with Hybrid Word-Character Models | -                           |
 |         |           | Revisiting Character-Based Neural Machine Translation with Capacity and Compression                                              | -                           |
+|         |           | BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding                                                 | -                           |
 
 ## License
 
@@ -107,6 +109,7 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [10]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture10-QA.pdf
 [11]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture11-convnets.pdf
 [12]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture12-subwords.pdf
+[13]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/Jacob_Devlin_BERT.pdf
 [10001]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes01-wordvecs1.pdf
 [10002]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes02-wordvecs2.pdf
 [10003]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes03-neuralnets.pdf
