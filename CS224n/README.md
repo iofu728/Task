@@ -27,6 +27,7 @@ lecture website: https://web.stanford.edu/class/cs224n/
 | Feb 11      | Feb 28     | ConvNets for NLP<br>[[slide]][11] [[note]][10011]                        | CNN                                                                                         |
 | Feb 13      | Feb 29     | Information from parts of words (Subword Models)<br>[[slide]][12]        | Sub-word, BPE, Character-level, morphemes                                                   |
 | Feb 18      | Mar 1      | Contextual Word Representations: BERT <br>[[slide]][13]                  | Pre-BERT & BERT & Post-BERT                                                                 |
+| Feb 20      | Mar 2      | Contextual Representations and Pretraining.<br>[[slide]][13]             | Contextual Representations.                                                                 |
 
 ## Assignments
 
@@ -89,7 +90,8 @@ lecture website: https://web.stanford.edu/class/cs224n/
 |         |           | A Convolutional Neural Network for Modelling Sentences                                                                           | -                           |
 | 12      |           | Minh-Thang Luong and Christopher Manning. Achieving Open Vocabulary Neural Machine Translation with Hybrid Word-Character Models | -                           |
 |         |           | Revisiting Character-Based Neural Machine Translation with Capacity and Compression                                              | -                           |
-|         |           | BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding                                                 | -                           |
+| 13      |           | BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding                                                 | -                           |
+| 14      | Mar 2     | [Contextual Word Representations: A Contextual Introduction.][30002]                                                             | word embedding              |
 
 ## License
 
@@ -123,3 +125,4 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [20002]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment2/assignment2.pdf
 [21002]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment2/assignment2.tex
 [30001]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/papers/Adam.pdf
+[30002]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/papers/ContextualWordRepresentations.pdf
