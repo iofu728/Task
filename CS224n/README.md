@@ -27,7 +27,8 @@ lecture website: https://web.stanford.edu/class/cs224n/
 | Feb 11      | Feb 28     | ConvNets for NLP<br>[[slide]][11] [[note]][10011]                        | CNN                                                                                         |
 | Feb 13      | Feb 29     | Information from parts of words (Subword Models)<br>[[slide]][12]        | Sub-word, BPE, Character-level, morphemes                                                   |
 | Feb 18      | Mar 1      | Contextual Word Representations: BERT <br>[[slide]][13]                  | Pre-BERT & BERT & Post-BERT                                                                 |
-| Feb 20      | Mar 2      | Contextual Representations and Pretraining.<br>[[slide]][13]             | Contextual Representations.                                                                 |
+| Feb 20      | Mar 2      | Contextual Representations and Pretraining.<br>[[slide]][14]             | Contextual Representations.                                                                 |
+| Feb 25      | Mar 3      | Natural Language Generation<br>[[slide]][15]                             | Decoding(Beam search, top-k/p, temperature), <br>Summarization, <br>evaluation(ROUGH, BLEU) |
 
 ## Assignments
 
@@ -92,6 +93,10 @@ lecture website: https://web.stanford.edu/class/cs224n/
 |         |           | Revisiting Character-Based Neural Machine Translation with Capacity and Compression                                              | -                           |
 | 13      |           | BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding                                                 | -                           |
 | 14      | Mar 2     | [Contextual Word Representations: A Contextual Introduction.][30002]                                                             | word embedding              |
+| 15      | Mar 3     | [The Curious Case of Neural Text Degeneration.][30003]                                                                           | Top-p sampling decoder      |
+|         |           | Get To The Point: Summarization with Pointer-Generator Networks.                                                                 | -                           |
+|         |           | Hierarchical Neural Story Generation.                                                                                            | -                           |
+|         |           | How NOT To Evaluate Your Dialogue System.                                                                                        | -                           |
 
 ## License
 
@@ -112,6 +117,8 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [11]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture11-convnets.pdf
 [12]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture12-subwords.pdf
 [13]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/Jacob_Devlin_BERT.pdf
+[14]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture14-contextual-representations.pdf
+[15]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture15-nlg.pdf
 [10001]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes01-wordvecs1.pdf
 [10002]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes02-wordvecs2.pdf
 [10003]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes03-neuralnets.pdf
@@ -126,3 +133,4 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [21002]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment2/assignment2.tex
 [30001]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/papers/Adam.pdf
 [30002]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/papers/ContextualWordRepresentations.pdf
+[30003]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/papers/CuriousCaseNTD.pdf
