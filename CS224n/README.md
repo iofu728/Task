@@ -29,6 +29,7 @@ lecture website: https://web.stanford.edu/class/cs224n/
 | Feb 18      | Mar 1      | Contextual Word Representations: BERT <br>[[slide]][13]                  | Pre-BERT & BERT & Post-BERT                                                                 |
 | Feb 20      | Mar 2      | Contextual Representations and Pretraining.<br>[[slide]][14]             | Contextual Representations.                                                                 |
 | Feb 25      | Mar 3      | Natural Language Generation<br>[[slide]][15]                             | Decoding(Beam search, top-k/p, temperature), <br>Summarization, <br>evaluation(ROUGH, BLEU) |
+| Feb 27      | Mar 4      | Reference in Language and Coreference Resolution<br>[[slide]][16]        | Coreference                                                                                 |
 
 ## Assignments
 
@@ -119,6 +120,7 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [13]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/Jacob_Devlin_BERT.pdf
 [14]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture14-contextual-representations.pdf
 [15]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture15-nlg.pdf
+[16]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture16-coref.pdf
 [10001]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes01-wordvecs1.pdf
 [10002]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes02-wordvecs2.pdf
 [10003]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes03-neuralnets.pdf
