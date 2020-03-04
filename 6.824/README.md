@@ -31,3 +31,4 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [4]: https://github.com/iofu728/Task/blob/develop/6.824/notes/notel04.md
 [10001]: https://github.com/iofu728/Task/blob/develop/6.824/notes/paper/mapreduce.pdf
 [10003]: https://github.com/iofu728/Task/blob/develop/6.824/notes/paper/gfs.pdf
+[10004]: https://github.com/iofu728/Task/blob/develop/6.824/notes/paper/vm-ft.pdf
