@@ -29,7 +29,8 @@ lecture website: https://web.stanford.edu/class/cs224n/
 | Feb 18      | Mar 1      | Contextual Word Representations: BERT <br>[[slide]][13]                  | Pre-BERT & BERT & Post-BERT                                                                 |
 | Feb 20      | Mar 2      | Contextual Representations and Pretraining.<br>[[slide]][14]             | Contextual Representations.                                                                 |
 | Feb 25      | Mar 3      | Natural Language Generation<br>[[slide]][15]                             | Decoding(Beam search, top-k/p, temperature), <br>Summarization, <br>evaluation(ROUGH, BLEU) |
-| Feb 27      | Mar 4      | Reference in Language and Coreference Resolution<br>[[slide]][16]        | Coreference                                                                                 |
+| Feb 27      | Mar 4      | Reference in Language and Coreference Resolution<br>[[slide]][16]        | Co-reference                                                                                |
+| Feb 27      | Mar 4      | Constituency Parsing and Tree RNN<br>[[slide]][18] [[note]][10018]       | Parsing                                                                                     |
 
 ## Assignments
 
@@ -98,6 +99,8 @@ lecture website: https://web.stanford.edu/class/cs224n/
 |         |           | Get To The Point: Summarization with Pointer-Generator Networks.                                                                 | -                           |
 |         |           | Hierarchical Neural Story Generation.                                                                                            | -                           |
 |         |           | How NOT To Evaluate Your Dialogue System.                                                                                        | -                           |
+| 18      |           | Parsing with Compositional Vector Grammars.                                                                                      | -                           |
+|         |           | Constituency Parsing with a Self-Attentive Encoder                                                                               | -                           |
 
 ## License
 
@@ -121,6 +124,7 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [14]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture14-contextual-representations.pdf
 [15]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture15-nlg.pdf
 [16]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture16-coref.pdf
+[18]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture18-TreeRNNs.pdf
 [10001]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes01-wordvecs1.pdf
 [10002]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes02-wordvecs2.pdf
 [10003]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes03-neuralnets.pdf
@@ -130,6 +134,7 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [10009]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/final-project-practical-tips.pdf
 [10010]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes07-QA.pdf
 [10011]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes08-CNN.pdf
+[10018]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes09-RecursiveNN_constituencyparsing.pdf
 [20001]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment1/exploring_word_vectors.ipynb
 [20002]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment2/assignment2.pdf
 [21002]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment2/assignment2.tex
