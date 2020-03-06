@@ -30,7 +30,8 @@ lecture website: https://web.stanford.edu/class/cs224n/
 | Feb 20      | Mar 2      | Contextual Representations and Pretraining.<br>[[slide]][14]             | Contextual Representations.                                                                 |
 | Feb 25      | Mar 3      | Natural Language Generation<br>[[slide]][15]                             | Decoding(Beam search, top-k/p, temperature), <br>Summarization, <br>evaluation(ROUGH, BLEU) |
 | Feb 27      | Mar 4      | Reference in Language and Coreference Resolution<br>[[slide]][16]        | Co-reference                                                                                |
-| Feb 27      | Mar 4      | Constituency Parsing and Tree RNN<br>[[slide]][18] [[note]][10018]       | Parsing                                                                                     |
+| March 5     | Mar 5      | Constituency Parsing and Tree RNN<br>[[slide]][18] [[note]][10018]       | Parsing                                                                                     |
+| March 12    | Mar 6      | Future of NLP + Deep Learning<br>[[slide]][20]                           | Future                                                                                      |
 
 ## Assignments
 
@@ -125,6 +126,7 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [15]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture15-nlg.pdf
 [16]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture16-coref.pdf
 [18]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture18-TreeRNNs.pdf
+[20]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/lecture20-future.pdf
 [10001]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes01-wordvecs1.pdf
 [10002]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes02-wordvecs2.pdf
 [10003]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/notes03-neuralnets.pdf
