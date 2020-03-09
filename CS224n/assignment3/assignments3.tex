@@ -1,0 +1,480 @@
+\documentclass[a4 paper]{article}
+% Set target color model to RGB
+\usepackage[inner=2.0cm,outer=2.0cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage[rgb]{xcolor}
+\usepackage{verbatim}
+\usepackage{subcaption}
+\usepackage{enumerate}
+\usepackage{amsgen,amsmath,amstext,amsbsy,amsopn,tikz,amssymb,tkz-linknodes}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true, urlcolor=blue,  linkcolor=blue, citecolor=blue]{hyperref}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{rotating}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+
+\usepackage{listings}
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    aboveskip={1.0\baselineskip},
+    belowskip={1.0\baselineskip},
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=4,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=lines,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color[rgb]{0.627,0.126,0.941},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{01,0,0},
+    numbers=left,
+    numberstyle=\small,
+    stepnumber=1,
+    numbersep=10pt,
+    captionpos=t,
+    escapeinside={\%*}{*)}
+}
+
+% Command settings
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+% \numberwithin{equation}{section}
+
+\newcommand{\homework}[6]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf CS 224n:~Natural Language Processing with Deep Learning \hfill {\small (#3)}} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1 {\small (#2)} \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: {\rm #4} \hfill Name: {\rm #5}} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{\textbf{CS 224n} #1 #2}{\textbf{CS 224n} #1 #2}
+   \vspace*{4mm}
+}
+
+\newcommand{\problem}[2]{~\\\fbox{\textbf{Problem #1}}\hfill (#2 points)\newline\newline}
+\newcommand{\subproblem}[1]{~\newline\textbf{(#1)}}
+\newcommand{\solution}{~\newline\textbf{\textit{(Solution)}} }
+\newcommand{\bb}[1]{$\boldsymbol{#1}$}
+\newcommand{\wtv}{\texttt{word2vec}}
+
+
+\begin{document}
+\homework{Submission Assignment \#3}{Dependency Parsing (52 Points)}{Due: 01/28/20}{Christopher Manning}{Jianpan Gun}
+
+In this assignment, you will build a neural dependency parser using PyTorch.
+In Part 1, you will learn about two general neural network techniques (Adam Optimization and Dropout) that you will use to build the dependency parser in Part 2.
+In Part 2, you will implement and train the dependency parser, before analyzing a few erroneous dependency parses.
+
+\problem{1: Machine Learning \& Neural Networks}{4+4=8}
+\subproblem{a} (4 points) \textbf{Adam Optimizer}
+
+\textbf{Recall the standard Stochastic Gradient Descent update rule:}
+ 
+\begin{equation}
+    \boldsymbol{\theta} \leftarrow \boldsymbol{\theta}-\alpha \nabla_{\boldsymbol{\theta}} J_{\text {minibatch}}(\boldsymbol{\theta})
+    \label{eq:sgd}
+\end{equation}
+\textbf{where $\theta$ is a vector containing all of the model parameters, $J$ is the loss function, $\nabla_{\boldsymbol{\theta}} J_{\text {minibatch}}(\boldsymbol{\theta})$ is the gradient of the loss function with respect to the parameters on a minibatch of data, and $\alpha$ is the learning rate.
+Adam Optimization uses a more sophisticated update rule with two additional steps.}
+
+i. (2 points) \textbf{First, Adam uses a trick called momentum by keeping track of \bb{m}, a rolling average of the gradients:}
+
+\begin{equation}
+    \begin{array}{l}
+    \mathbf{m} \leftarrow \beta_{1} \mathbf{m}+\left(1-\beta_{1}\right) \nabla_{\boldsymbol{\theta}} J_{\text {minibatch }}(\boldsymbol{\theta}) \\
+    \boldsymbol{\theta} \leftarrow \boldsymbol{\theta}-\alpha \mathbf{m}
+    \end{array}
+    \label{eq:momentum}
+\end{equation}
+\textbf{where $\beta_1$ is a hyperparameter between 0 and 1 (often set to 0.9)
+Brieﬂy explain (you don’t need to prove mathematically, just give an intuition) how using \bb{m} stops the updates from varying as much and why this low variance may be helpful to learning, overall.}
+
+A: The parameter \bb{m} store the history gradient and use it to smooth the gradient volatility.
+Exponential weighted average equal to average the front $t\propto\beta_1$ values.
+This mechanism makes the speed in the dimension with constant gradient direction faster, and the update speed in the dimension with changed gradient direction slower, so that it can speed up convergence and reduce oscillation.
+Recursive derivation equation (\ref{eq:momentum}), get:
+\begin{equation}
+    \begin{aligned}
+    \mathbf{m}_t
+    = \beta_{1} \mathbf{m}_{t-1} + (1-\beta_{1}) g_{t}
+    = \beta_{1}[\beta_{1} \mathbf{m}_{t-2} + (1-\beta_{1}) g_{t-1}] + (1-\beta_{1}) g_{t}
+    = \beta_{1}^2 \mathbf{m}_{t-2} + (1-\beta_{1})\beta_{1} g_{t-1} + (1-\beta_{1}) g_{t} \\
+    = \beta_{1}^3 \mathbf{m}_{t-3} + (1-\beta_{1})\beta_{1}^2 g_{t-2} + (1-\beta_{1})\beta_{1} g_{t-1} + (1-\beta_{1}) g_{t} \\
+    = \cdots \\
+    = \beta_{1}^t \mathbf{m}_{0} + (1-\beta_{1})\sum_{k=0}^{t-1}[\beta_{1}^k g_{t-k}] \\
+    \end{aligned}
+    \label{eq:momentum}
+\end{equation}
+
+ii. (2 points) \textbf{Adam extends the idea of momentum with the trick of \textit{adaptive learning rates} by keeping track of \bb{v}, a rolling average of the magnitudes of the gradients:}
+
+\begin{equation}
+    \begin{aligned}
+    \mathbf{m} & \leftarrow \beta_{1} \mathbf{m}+\left(1-\beta_{1}\right) \nabla_{\boldsymbol{\theta}} J_{\text {minibatch}}(\boldsymbol{\theta}) \\
+    \mathbf{v} & \leftarrow \beta_{2} \mathbf{v}+\left(1-\beta_{2}\right)\left(\nabla_{\boldsymbol{\theta}} J_{\text {minibatch}}(\boldsymbol{\theta}) \odot \nabla_{\boldsymbol{\theta}} J_{\text {minibatch}} (\boldsymbol{\theta})\right) \\
+    \boldsymbol{\theta} & \leftarrow \boldsymbol{\theta}-\alpha \odot \mathbf{m} / \sqrt{\mathbf{v}}
+    \end{aligned}
+\end{equation}
+\textbf{where $\bigodot$ and / denote elementwise multiplication and division (so $z\bigodot z$ is elementwise squaring) and $\beta_2$ is a hyperparameter between 0 and 1 (often set to 0.99). Since Adam divides the update by $\sqrt{v}$, which of the model parameters will get larger updates? Why might this help with learning?}
+
+A: Similarly,
+\begin{equation}
+    \begin{aligned}
+    \mathbf{m}_t
+    = \beta_{1}^t \mathbf{m}_{0} + (1-\beta_{1})\sum_{k=0}^{t-1}\beta_{1}^k g_{t-k} 
+    \approx (1-\beta_{1})\sum_{k=0}^{t-1}\beta_{1}^k g_{t-k} \\
+    \mathbf{v}_t
+    = \beta_{2}^t \mathbf{v}_{0} + (1-\beta_{2})\sum_{k=0}^{t-1}\beta_{2}^k g_{t-k}^2 
+    \approx (1-\beta_{2})\sum_{k=0}^{t-1}\beta_{2}^k g_{t-k}^2 \\
+    \end{aligned}
+    \label{eq:momentum}
+\end{equation}
+
+Considering,
+\begin{equation}
+    \alpha_{t}=\alpha \cdot \sqrt{1-\beta_{2}^{t}} /\left(1-\beta_{1}^{t}\right)
+\end{equation}
+
+So,
+\begin{equation}
+    \begin{aligned}
+    \Delta \theta_{t} = \theta_{t} - \theta_{t-1}
+    = -\alpha_{t} \cdot m_{t} /(\sqrt{v_{t}}+\hat{\epsilon})
+    = -\alpha \frac{1-\beta_1}{1-\beta_1^t} \sqrt{\frac{1-\beta_2^t}{1-\beta_2}}\frac{\sum_{k=0}^{t-1}\beta_{1}^k g_{t-k}}{\epsilon + \sqrt{\sum_{k=0}^{t-1}\beta_{2}^k g_{t-k}^2}} \\
+    = -\alpha \mathcal{F}(\beta_1, \beta_2, t) \sum_{k=0}^{t-1} \frac{1}{\epsilon/g_{t_k} + \sqrt{\sum_{i=0}^{t-1}\beta_{2}^i (g_{t-i}/g_{t_k})^2}}
+    \end{aligned}
+\end{equation}
+
+Due to $g_t < g_{t-i}$. So, the weight of history gradient is higher than before.
+It also eased the excessively fast gradient descent originally brought by squared gradient and speed up the slow gradient descent.
+
+\subproblem{b} (4 points) \textbf{Dropout is a regularization technique.
+During training, dropout randomly sets units in the hidden layer h to zero with probability $p$ drop (dropping diﬀerent units each minibatch), and then multiplies h by a constant $\gamma$.
+We can write this as}
+\begin{equation}
+    \mathbf{h}_{\mathrm{drop}}=\gamma \mathbf{d} \odot \mathbf{h}
+\end{equation}
+
+\textbf{where $d\in\{0,1\}_{D_h}$ ($D_h$ is the size of $h$) is a mask vector where each entry is 0 with probability $p_{drop}$ and 1 with probability ($1-p_{drop}$).
+$\gamma$ is chosen such that the expected value of $h$ drop is $h$:}
+
+\begin{equation}
+    \mathbb{E}_{p_{\text {drop}}}\left[\mathbf{h}_{\text {drop }}\right]_{i}=h_{i}
+\end{equation}
+\textbf{for all $i \in \{1,\cdots,D_h\}$.}
+
+i. (2 points) \textbf{What must $\gamma$ equal in terms of $p$ drop?
+Brieﬂy justify your answer.}
+
+$\gamma = \frac{1}{1-p_{dropout}}$, 
+due to the expectations of $h_{drop}$ is equal to $h_i$.
+So, 
+\begin{equation}
+    \mathbb{E}_{p_{\text {drop}}}\left[\mathbf{h}_{\text {drop }}\right]_{i}
+    = \mathbb{E}_{p_{\text {drop}}}\left[\gamma \mathbf{d} \odot \mathbf{h}\right]_{i}
+    = \gamma\mathbb{E}_{p_{\text {drop}}}[(1-p_{drop})h_i]
+    = \gamma(1-p_{drop})h_i
+    = h_i
+\end{equation}
+
+ii. (2 points) \textbf{Why should we apply dropout during training but not during evaluation?}
+
+We need to predict each inputs in the evaluation stage.
+The \texttt{Dropout} will miss some information in the evaluation.
+
+
+\problem{2: Neural Transition-Based Dependency Parsing}{4+2+6+8+12+12=44}
+
+In this section, you’ll be implementing a neural-network based dependency parser, with the goal of maximizing performance on the UAS (Unlabeled Attachment Score) metric.
+
+Before you begin please install PyTorch 1.4.0 from https://pytorch.org/get-started/locally/ with the CUDA option set to None.
+Additionally run pip install tqdm to install the tqdm package – which produces progress bar visualizations throughout your training process.
+
+A dependency parser analyzes the grammatical structure of a sentence, establishing relationships between head words, and words which modify those heads.
+Your implementation will be a transition-based parser, which incrementally builds up a parse one step at a time.
+At every step it maintains a partial parse, which is represented as follows:
+
+\begin{itemize}
+    \item A \textit{stack} of words that are currently being processed.
+    \item A \textit{buffer} of words yet to be processed.
+    \item A list of \textit{dependencies} predicted by the parser.
+\end{itemize}
+
+Initially, the stack only contains ROOT, the dependencies list is empty, and the buﬀer contains all words of the sentence in order.
+At each step, the parser applies a \textit{transition} to the partial parse until its \textit{buffer} is empty and the stack size is 1.
+The following transitions can be applied:
+
+\begin{itemize}
+    \item SHIFT: removes the ﬁrst word from the \textit{buffer} and pushes it onto the stack.
+    \item LEFT-ARC: marks the second (second most recently added) item on the stack as a dependent of the ﬁrst item and removes the second item from the stack, adding a  $ﬁrst\_word\rightarrow second\_word$  dependency to the dependency list.
+    \item RIGHT-ARC: marks the ﬁrst (most recently added) item on the stack as a dependent of the second item and removes the ﬁrst item from the stack, adding a $second\_word\rightarrow ﬁrst\_word $ dependency to the dependency list.
+\end{itemize}
+
+On each step, your parser will decide among the three transitions using a neural network classiﬁer.
+
+\subproblem{a} (4 points) \textbf{Go through the sequence of transitions needed for parsing the sentence “I parsed this sentence correctly”.
+The dependency tree for the sentence is shown below.
+At each step, give the conﬁguration of the stack and buﬀer, as well as what transition was applied this step and what new dependency was added (if any).
+The ﬁrst three steps are provided below as an example.}
+\begin{figure}[h]
+    \begin{center}
+    \includegraphics[width=0.8\textwidth]{img/a3_2a.png}
+    \label{fig:a3_2a}
+    \end{center}
+\end{figure}
+\input{table/a3_2a}
+
+\subproblem{b} (2 points) \textbf{A sentence containing n words will be parsed in how many steps (in terms of n)? Brieﬂy explain why.} 
+
+A sentence will be parsed 2n times.
+First n times are push operation and second n times are pop operation.
+
+\subproblem{c} (6 points) \textbf{Implement the \texttt{\_\_init\_\_} and \texttt{parse\_step} functions in the \texttt{PartialParse} class in parser \texttt{transitions.py}. This implements the transition mechanics your parser will use. You can run basic (non\_exhaustive) tests by running \texttt{python parser transitions.py part\_c}.}
+
+
+\begin{lstlisting}[label={list:first},caption=PartialParse class.]
+class PartialParse(object):
+    ROOT = "ROOT"
+
+    def __init__(self, sentence: List[str]):
+        """Initializes this partial parse."""
+        self.sentence = sentence
+        self.stack = [self.ROOT]
+        self.buffer = sentence.copy()
+        self.dependencies = []
+
+    def parse_step(self, transition: str):
+        """Performs a single parse step by applying the given transition to this partial parse
+
+        @param transition (str): A string that equals "S", "LA", or "RA" representing the shift,
+                                left-arc, and right-arc transitions. You can assume the provided
+                                transition is a legal transition.
+        """
+        if transition == "S":
+            self.stack.append(self.buffer[0])
+            self.buffer = self.buffer[1:]
+        else:
+            head, tail = self.stack[-2:][:: -1 if transition == "LA" else 1]
+            self.dependencies.append((head, tail))
+            self.stack.remove(tail)
+
+    def parse(self, transitions):
+        for transition in transitions:
+            self.parse_step(transition)
+        return self.dependencies
+\end{lstlisting}
+
+\subproblem{d} (8 points) \textbf{Our network will predict which transition should be applied next to a partial parse. We could use it to parse a single sentence by applying predicted transitions until the parse is complete. However, neural networks run much more eﬃciently when making predictions about batches of data at a time (i.e., predicting the next transition for any diﬀerent partial parses simultaneously). We can parse sentences in minibatches with the following algorithm.}
+
+\begin{algorithm}[h]
+    \caption{Minibatch Dependency Parsing}
+    \label{alg:framework}
+    \begin{algorithmic}[1]
+        \REQUIRE \textit{sentences}, a list of sentences to be parsed and model, our model that makes parse decisions.
+        \STATE Initialize partial parses as a list of PartialParses, one for each sentence in sentences;
+        \STATE Initialize unfinished parses as a shallow copy of partial parses;
+        \WHILE{\textit{unfinished parses} is not empty}
+        \STATE Take the ﬁrst batch size parses in unfinished parses as a minibatch;
+        \STATE Use the model to predict the next transition for each partial parse in the minibatch;
+        \STATE Perform a parse step on each partial parse in the minibatch with its predicted transition;
+        \STATE Remove the completed (empty buffer and stack of size 1) parses from unfinished parses;
+        \ENDWHILE
+    \end{algorithmic}
+\end{algorithm}
+
+\textbf{Implement this algorithm in the \texttt{minibatch\_parse} function in \texttt{parser\_transitions.py}.
+You can run basic (non-exhaustive) tests by running \texttt{python parser\_transitions.py part\_d}. Note: You will need minibatch parse to be correctly implemented to evaluate the model you will build in part (e).
+However, you do not need it to train the model, so you should be able to complete most of part (e) even if minibatch parse is not implemented yet.}
+
+\begin{lstlisting}[label={list:first},caption=minibatch\_parse.]
+def minibatch_parse(sentences: List[List[str]], model, batch_size: int):
+    """Parses a list of sentences in minibatches using a model."""
+    dependencies = []
+    partial_parses = [PartialParse(sentence) for sentence in sentences]
+    unfinished_parses = partial_parses[:]
+    while unfinished_parses:
+        minibatch_data = unfinished_parses[:batch_size]
+        transitions = model.predict(minibatch_data)
+        for pp, transition in zip(minibatch_data, transitions):
+            pp.parse_step(transition)
+            if len(pp.buffer) == 0 and len(pp.stack) == 1:
+                unfinished_parses.remove(pp)
+    dependencies = [pp.dependencies for pp in partial_parses]
+    return dependencies
+\end{lstlisting}
+
+\subproblem{e} (12 points) \textbf{We are now going to train a neural network to predict, given the state of the stack, buffer, and dependencies, which transition should be applied next.
+First, the model extracts a feature vector representing the current state.
+We will be using the feature set presented in the original neural dependency parsing paper: A Fast and Accurate Dependency Parser using Neural Networks.
+The function extracting these features has been implemented for you in utils/parser utils.py.
+This feature vector consists of a list of tokens (e.g., the last word in the stack, ﬁrst word in the buﬀer, dependent of the second-to-last word in the stack if there is one, etc.).
+They can be represented as a list of integers $\textbf{w} = [w_1, w_2, \dots, w_m ]$ where m is the number of features and each $0 \leq w_{i}<|V|$ is the index of a token in the vocabulary ($|V|$ is the vocabulary size).
+Then our network looks up an embedding for each word and concatenates them into a single input vector:}
+
+\begin{equation}
+    \mathbf{x}=\left[\mathbf{E}_{w_{1}}, \dots, \mathbf{E}_{w_{m}}\right] \in \mathbb{R}^{d m}
+\end{equation}
+\textbf{where $E\in \mathbb{R}^{|V|d} $ is an embedding matrix with each row E w as the vector for a particular word w.
+We then compute our prediction as:}
+
+\begin{equation}
+    \begin{aligned} \mathbf{h} &=\operatorname{ReLU}\left(\mathbf{x} \mathbf{W}+\mathbf{b}_{1}\right) \\ \mathbf{l} &=\mathbf{h} \mathbf{U}+\mathbf{b}_{2} \\ \hat{\mathbf{y}} &=\operatorname{softmax}(l) \end{aligned}
+\end{equation}
+\textbf{where h is referred to as the hidden layer, l is referred to as the logits, $\hat{\mathbf{y}}$ is referred to as the predictions, and ReLU(z) = max(z, 0)).
+We will train the model to minimize cross-entropy loss:}
+
+\begin{equation}
+    J(\theta)=C E(\mathbf{y}, \hat{\mathbf{y}})=-\sum_{i=1}^{3} y_{i} \log \hat{y}_{i}
+\end{equation}
+
+\textbf{To compute the loss for the training set, we average this $J(\theta)$ across all training examples.}
+
+\textbf{We will use UAS score as our evaluation metric.
+UAS refers to Unlabeled Attachment Score, which is computed as the ratio between number of correctly predicted dependencies and the number of total dependencies despite of the relations (our model doesn’t predict this).}
+
+\textbf{In parser model.py you will ﬁnd skeleton code to implement this simple neural network using PyTorch.
+Complete the init, embedding lookup and forward functions to implement the model.
+Then complete the train for epoch and train functions within the run.py ﬁle.
+Finally execute python run.py to train your model and compute predictions on test data from Penn Treebank (annotated with Universal Dependencies).}
+
+\textbf{Note:}
+
+\begin{itemize}
+    \item For this assignment, you are asked to implement Linear layer and Embedding layer.
+    Please DO NOT use torch.nn.Linear or torch.nn.Embedding module in your code, otherwise you will receive deductions for this problem.
+    \item Please follow the naming requirements in our TODO if there are any, e.g.
+    if there are explicit requirements about variable names you have to follow them in order to receive full credits.
+    You are free to declare other variable names if not explicitly required.
+\end{itemize}
+
+\textbf{Hints:}
+
+\begin{itemize}
+    \item Once you have implemented embedding lookup (e) or forward (f) you can call python parser model.py with ﬂag -e or -f or both to run sanity checks with each function.
+    These sanity checks are fairly basic and passing them doesn’t mean your code is bug free.
+    \item When debugging, you can add a debug ﬂag: python run.py -d.
+    This will cause the code to run over a small subset of the data, so that training the model won’t take as long. Make sure to remove the -d ﬂag to run the full model once you are done debugging.
+    \item When running with debug mode, you should be able to get a loss smaller than 0.2 and a UAS larger than 65 on the dev set (although in rare cases your results may be lower, there is some randomness when training).
+    \item It should take about 1 hour to train the model on the entire the training dataset, i.e., when debug mode is disabled.
+    \item When debug mode is disabled, you should be able to get a loss smaller than 0.08 on the train set and an Unlabeled Attachment Score larger than 87 on the dev set.
+    For comparison, the model in the original neural dependency parsing paper gets 92.5 UAS.
+    If you want, you can tweak the hyperparameters for your model (hidden layer size, hyperparameters for Adam, number of epochs, etc.) to improve the performance (but you are not required to do so).
+\end{itemize}
+
+\textbf{Deliverables:}
+
+\begin{itemize}
+    \item Working implementation of the neural dependency parser in parser model.py.
+    (We’ll look at and run this code for grading).
+    \item Report the best UAS your model achieves on the dev set and the UAS it achieves on the test set.
+\end{itemize}
+
+\begin{lstlisting}[label={list:first},caption=ParserModel class.]
+
+class ParserModel(nn.Module):
+
+    def __init__(self, embeddings, n_features=36,
+                 hidden_size=200, n_classes=3, dropout_prob=0.5):
+        """ Initialize the parser model. """
+        super(ParserModel, self).__init__()
+        self.n_features = n_features
+        self.n_classes = n_classes
+        self.dropout_prob = dropout_prob
+        self.embed_size = embeddings.shape[1]
+        self.hidden_size = hidden_size
+        self.embeddings = nn.Parameter(torch.tensor(embeddings))
+
+        self.embed_to_hidden_weight = nn.Parameter(nn.init.xavier_normal_(
+            torch.zeros(self.embed_size * n_features, hidden_size)))
+        self.embed_to_hidden_bias = nn.Parameter(nn.init.xavier_normal_(
+            torch.zeros(1, hidden_size)))
+
+        self.dropout = nn.Dropout(dropout_prob)
+
+        self.hidden_to_logits_weight = nn.Parameter(nn.init.xavier_normal_(
+            torch.zeros(hidden_size, n_classes)))
+        self.hidden_to_logits_bias = nn.Parameter(nn.init.xavier_normal_(
+            torch.zeros(1, n_classes)))
+        self.RELU = nn.functional.relu
+
+    def embedding_lookup(self, w):
+        """ Utilize `w` to select embeddings from embedding matrix  """
+        # 1) For each index `i` in `w`, select `i`th vector from self.embeddings
+        # 2) Reshape the tensor using `view` function if necessary
+        ###
+        x = self.embeddings[w].view((w.shape[0], -1))
+        return x
+
+    def forward(self, w):
+        """ Run the model forward."""
+        x = self.embedding_lookup(w)
+
+        h = self.RELU(torch.matmul(x,
+                                   self.embed_to_hidden_weight) + self.embed_to_hidden_bias)
+        logits = torch.matmul(h,
+                              self.hidden_to_logits_weight) + self.hidden_to_logits_bias
+        return logits
+\end{lstlisting}
+
+- test UAS: \textbf{89.21}
+
+\subproblem{f} (12 points) \textbf{In this question are four sentences with dependency parses obtained from a parser.
+Each sentence has one error, and there is one example of each of the four types above.
+For each sentence, state the type of error, the incorrect dependency, and the correct dependency. To demonstrate: for the example above, you would write:}
+
+A. I disembarked and was heading to a wedding fearing my death.
+
+\begin{itemize}
+    \item \textbf{Error type:} Verb Phrase Attachment Error
+    \item \textbf{Incorrect dependency:} wedding $\rightarrow$ fearing
+    \item \textbf{Correct dependency:} hearing $\rightarrow$ fearing
+\end{itemize}
+
+B. It makes me want to rush out and rescue people from dilemmas.
+
+of their own making
+\begin{itemize}
+    \item \textbf{Error type:} Coordination Attachment Error
+    \item \textbf{Incorrect dependency:} rush $\rightarrow$ out
+    \item \textbf{Correct dependency:} rush $\rightarrow$ and
+\end{itemize}
+
+C. It is on loan from a guy named Joe O’Neill in Midland , Texas .
+
+\begin{itemize}
+    \item \textbf{Error type:} Prepositional Phrase Attachment Error
+    \item \textbf{Incorrect dependency:} named $\rightarrow$ Midland
+    \item \textbf{Correct dependency:} guy $\rightarrow$ Midland
+\end{itemize}
+
+D. Brian has been one of the most crucial elements to the success of Mozilla software .
+
+\begin{itemize}
+    \item \textbf{Error type:} Modifier Attachment Error
+    \item \textbf{Incorrect dependency:} elements $\rightarrow$ most
+    \item \textbf{Correct dependency:} crucial $\rightarrow$ most
+\end{itemize}
+\end{document} 
