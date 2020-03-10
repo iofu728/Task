@@ -18,6 +18,7 @@ lecture website: https://pdos.csail.mit.edu/6.824
 | Feb 6       | Feb 23     | Thread and RPC [[note]][2]             | -                  | Serial, ConcurrentMutex, ConcurrentChannel, RPC           |
 | Feb 11      | Feb 24     | GFS [[note]][3]                        | [GFS][10003]       | detail of GFS                                             |
 | Feb 11      | Feb 24     | Primary-Backup Replication [[note]][4] | [VMware-FT][10004] | Fault tolerance                                           |
+| Feb 20      | Mar 9      | Go debugging [[note]][5]               | -                  | Go routine, channel, mutex, condition                     |
 
 ## License
 
@@ -29,6 +30,7 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [2]: https://github.com/iofu728/Task/blob/develop/6.824/notes/notel02.md
 [3]: https://github.com/iofu728/Task/blob/develop/6.824/notes/notel03.md
 [4]: https://github.com/iofu728/Task/blob/develop/6.824/notes/notel04.md
+[5]: https://github.com/iofu728/Task/blob/develop/6.824/notes/notel05.md
 [10001]: https://github.com/iofu728/Task/blob/develop/6.824/notes/paper/mapreduce.pdf
 [10003]: https://github.com/iofu728/Task/blob/develop/6.824/notes/paper/gfs.pdf
 [10004]: https://github.com/iofu728/Task/blob/develop/6.824/notes/paper/vm-ft.pdf
