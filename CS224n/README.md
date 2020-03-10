@@ -41,6 +41,7 @@ lecture website: https://web.stanford.edu/class/cs224n/
 | -------- | --------------- | ----------------------------------------------------------------------------------------- | --------------------------------------- |
 | Jan 14   | Feb 19          | Assignment 1 (6%): Introduction to word vectors<br>[[HW]][20001]                          | Co-Occurrence, SVD, GenSim              |
 | Jan 21   | Feb 27          | Assignment 2 (12%): Derivatives and implementation of word2vec algorithm<br>[[HW]][20002] | naive-softmax, neg-sample, SG, Gradient |
+| Jan 28   | Mar 10          | Assignment 3 (12%): Dependency parsing and neural network foundations<br>[[HW]][20003]    | Adam, Dropout, Dependency parsing       |
 
 ## Course Material
 
@@ -140,6 +141,7 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [20001]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment1/exploring_word_vectors.ipynb
 [20002]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment2/assignment2.pdf
 [21002]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment2/assignment2.tex
+[20003]: https://github.com/iofu728/Task/blob/develop/CS224n/assignment3/assignment3.pdf
 [30001]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/papers/Adam.pdf
 [30002]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/papers/ContextualWordRepresentations.pdf
 [30003]: https://github.com/iofu728/Task/blob/develop/CS224n/notes/papers/CuriousCaseNTD.pdf
