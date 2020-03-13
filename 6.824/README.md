@@ -20,6 +20,7 @@ lecture website: https://pdos.csail.mit.edu/6.824
 | Feb 11      | Feb 24     | Primary-Backup Replication [[note]][4] | [VMware-FT][10004] | Fault tolerance                                           |
 | Feb 20      | Mar 9      | Go debugging [[note]][5]               | -                  | Go routine, channel, mutex, condition                     |
 | Feb 25      | Mar 10     | Raft(I) [[note]][6]                    | [Raft][1006]       | Split Brain, Majority Voting, Raft, log, leader           |
+| Feb 27      | Mar 13     | Raft(II) [[note]][7]                   | [Raft][1006]       | Log, Roll Back, Persistence, Snapshot, Linearizablity     |
 
 ## License
 
@@ -33,6 +34,7 @@ Copyright (c) 2019-present, gunjianpan(iofu728)
 [4]: https://github.com/iofu728/Task/blob/develop/6.824/notes/notel04.md
 [5]: https://github.com/iofu728/Task/blob/develop/6.824/notes/notel05.md
 [6]: https://github.com/iofu728/Task/blob/develop/6.824/notes/notel06.md
+[7]: https://github.com/iofu728/Task/blob/develop/6.824/notes/notel07.md
 [10001]: https://github.com/iofu728/Task/blob/develop/6.824/notes/paper/mapreduce.pdf
 [10003]: https://github.com/iofu728/Task/blob/develop/6.824/notes/paper/gfs.pdf
 [10004]: https://github.com/iofu728/Task/blob/develop/6.824/notes/paper/vm-ft.pdf
