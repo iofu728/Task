@@ -48,3 +48,6 @@ pkuseg
 *.cb
 *.cb2
 .*.lb
+*.fdb*
+*.sync*
+datasets
